@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- $Id: package.xml,v 1.1 2004-06-16 08:46:19 ieure Exp $ -->
+<package version="1.0">
+    <name>MIME_Type</name>
+    <summary>Utility class for dealing with MIME types</summary>
+    <description><![CDATA[
+        Provide functionality for dealing with MIME types.
+        * Parse MIME type.
+        * Supports full RFC2045 specification.
+        * Many utility functions for working with and determining info about types.
+        * Most functions can be called statically.
+        * Autodetect a file's mime-type, either with mime_content_type() or the 'file' command.
+    ]]></description>
+    <license>PHP License 3.0</license>
+
+    <maintainers>
+            <maintainer>
+            <user>ieure</user>
+            <role>lead</role>
+            <name>Ian Eure</name>
+            <email>ieure@php.net</email>
+        </maintainer>
+    </maintainers>
+
+    <release>
+        <version>1.0.0beta1</version>
+        <state>beta</state>
+        <date>2004-04-16</date>
+        <notes><![CDATA[
+            Initial PEARification
+            * Split most functionality off from MIME_ContentType
+        ]]></notes>
+        <filelist>
+            <dir name="/" baseinstalldir="MIME">
+                <file role="php" name="Type.php">
+                    <replace from="@version@" to="version" type="package-info"/>
+                    <replace from="@package@" to="package" type="package-info"/>
+                </file>
+            </dir>
+            <dir name="/" baseinstalldir="MIME/Type">
+                <file role="php" name="Parameter.php">
+                    <replace from="@version@" to="version" type="package-info"/>
+                    <replace from="@package@" to="package" type="package-info"/>
+                </file>
+            </dir>
+            <dir name="/" baseinstalldir="docs/MIME_Type">
+                <file role="php" name="example.php">
+                    <replace from="@package@" to="package" type="package-info"/>
+                    <replace from="@doc_dir@" to="doc_dir" type="pear-config"/>
+                </file>
+            </dir>
+        </filelist>
+    </release>
+
+    <deps>
+        <dep type="pkg" rel="ge" version="1.2.1">PEAR</dep>
+        <dep type="pkg" rel="has" optional="yes">System_Command</dep>
+    </deps>
+</package>
