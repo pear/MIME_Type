@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<!-- $Id: package.xml,v 1.3 2004-06-16 19:58:39 ieure Exp $ -->
+<!-- $Id: package.xml,v 1.4 2004-08-07 22:19:05 ieure Exp $ -->
 <package version="1.0">
     <name>MIME_Type</name>
     <summary>Utility class for dealing with MIME types</summary>
@@ -23,12 +23,12 @@
     </maintainers>
 
     <release>
-        <version>1.0.0beta2</version>
+        <version>1.0.0beta3</version>
         <state>beta</state>
-        <date>2004-06-16</date>
+        <date>2004-08-07</date>
         <notes><![CDATA[
-            * Make changes as requested during the proposal/vote process.
-            *
+            * Add $parameters class var. (Fixes #2083)
+            * Quote filenames in _fileAutoDetect() (Fixes #2078)
         ]]></notes>
         <filelist>
             <dir name="/" baseinstalldir="MIME">
@@ -53,6 +53,34 @@
     </release>
     
     <changelog>
+        <release>
+            <version>1.0.0beta2</version>
+            <state>beta</state>
+            <date>2004-06-16</date>
+            <notes><![CDATA[
+                * Make changes as requested during the proposal/vote process.
+            ]]></notes>
+            <filelist>
+                <dir name="/" baseinstalldir="MIME">
+                    <file role="php" name="Type.php">
+                        <replace from="@version@" to="version" type="package-info"/>
+                        <replace from="@package@" to="package" type="package-info"/>
+                    </file>
+                </dir>
+                <dir name="/" baseinstalldir="MIME/Type">
+                    <file role="php" name="Parameter.php">
+                        <replace from="@version@" to="version" type="package-info"/>
+                        <replace from="@package@" to="package" type="package-info"/>
+                    </file>
+                </dir>
+                <dir name="/" baseinstalldir="docs/MIME_Type">
+                    <file role="php" name="example.php">
+                        <replace from="@package@" to="package" type="package-info"/>
+                        <replace from="@doc_dir@" to="doc_dir" type="pear-config"/>
+                    </file>
+                </dir>
+            </filelist>
+        </release>
         <release>
             <version>1.0.0beta1</version>
             <state>beta</state>

@@ -46,6 +46,13 @@ class MIME_Type {
     var $subType = '';
     
     /**
+     * Optional MIME parameters
+     *
+     * @var array
+     */
+    var $parameters = array();
+    
+    /**
      * List of valid media types
      *
      * @var array
@@ -379,7 +386,7 @@ class MIME_Type {
             return PEAR::raiseError("Can't find file command \"{$fileCmd}\"");
         }
 
-        $cmd->pushCommand($fileCmd, "-bi $file");
+        $cmd->pushCommand($fileCmd, "-bi '{$file}'");
         $res = $cmd->execute();
         unset($cmd);
 
