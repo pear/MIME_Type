@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<!-- $Id: package.xml,v 1.1 2004-06-16 08:46:19 ieure Exp $ -->
+<!-- $Id: package.xml,v 1.2 2004-06-16 19:57:25 ieure Exp $ -->
 <package version="1.0">
     <name>MIME_Type</name>
     <summary>Utility class for dealing with MIME types</summary>
@@ -23,12 +23,12 @@
     </maintainers>
 
     <release>
-        <version>1.0.0beta1</version>
+        <version>1.0.0beta2</version>
         <state>beta</state>
-        <date>2004-04-16</date>
+        <date>2004-06-04</date>
         <notes><![CDATA[
-            Initial PEARification
-            * Split most functionality off from MIME_ContentType
+            * Make changes as requested during the proposal/vote process.
+            *
         ]]></notes>
         <filelist>
             <dir name="/" baseinstalldir="MIME">
@@ -51,6 +51,38 @@
             </dir>
         </filelist>
     </release>
+    
+    <changelog>
+        <release>
+            <version>1.0.0beta1</version>
+            <state>beta</state>
+            <date>2004-04-16</date>
+            <notes><![CDATA[
+                Initial PEARification
+                * Split most functionality off from MIME_ContentType
+            ]]></notes>
+            <filelist>
+                <dir name="/" baseinstalldir="MIME">
+                    <file role="php" name="Type.php">
+                        <replace from="@version@" to="version" type="package-info"/>
+                        <replace from="@package@" to="package" type="package-info"/>
+                    </file>
+                </dir>
+                <dir name="/" baseinstalldir="MIME/Type">
+                    <file role="php" name="Parameter.php">
+                        <replace from="@version@" to="version" type="package-info"/>
+                        <replace from="@package@" to="package" type="package-info"/>
+                    </file>
+                </dir>
+                <dir name="/" baseinstalldir="docs/MIME_Type">
+                    <file role="php" name="example.php">
+                        <replace from="@package@" to="package" type="package-info"/>
+                        <replace from="@doc_dir@" to="doc_dir" type="pear-config"/>
+                    </file>
+                </dir>
+            </filelist>
+        </release>
+    </changelog>
 
     <deps>
         <dep type="pkg" rel="ge" version="1.2.1">PEAR</dep>
