@@ -386,7 +386,7 @@ class MIME_Type {
             return PEAR::raiseError("Can't find file command \"{$fileCmd}\"");
         }
 
-        $cmd->pushCommand($fileCmd, "-bi '{$file}'");
+        $cmd->pushCommand($fileCmd, "-bi " . escapeshellarg($file));
         $res = $cmd->execute();
         unset($cmd);
 
