@@ -23,6 +23,11 @@ if (MIME_Type::isVendor($type2)) {
 
 $file = '@doc_dir@/@package@/example.php';
 print "\nChecking type of: $file\n";
-print MIME_Type::autoDetect($file)."\n";
+$type = MIME_Type::autoDetect($file);
+if (PEAR::isError($type)) {
+    print 'Error: ' . $type->getMessage() . "\n";
+} else {
+    print $type . "\n";
+}
 
 ?>

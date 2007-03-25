@@ -37,21 +37,21 @@ class MIME_Type {
      * @var string
      */
     var $media = '';
-    
+
     /**
      * The MIME media sub-type
      *
      * @var string
      */
     var $subType = '';
-    
+
     /**
      * Optional MIME parameters
      *
      * @var array
      */
     var $parameters = array();
-    
+
     /**
      * List of valid media types
      *
@@ -138,7 +138,7 @@ class MIME_Type {
         }
         return $params;
     }
-    
+
 
     /**
      * Strip paramaters from a MIME type string
@@ -266,17 +266,18 @@ class MIME_Type {
      * @param  string  $card Wildcard to check against
      * @param  string  $type MIME type to check
      * @return boolean true if there was a match, false otherwise
+     * @static
      */
     function wildcardMatch($card, $type)
     {
         if (!MIME_Type::isWildcard($card)) {
             return false;
         }
-        
+
         if ($card == '*/*') {
             return true;
         }
-        
+
         if (MIME_Type::getMedia($card) ==
             MIME_Type::getMedia($type)) {
             return true;
@@ -320,6 +321,10 @@ class MIME_Type {
      *
      * This function may be called staticly.
      *
+     * @internal Tries to use fileinfo extension at first. If that
+     *  does not work, mime_magic is used. If this is also not available
+     *  or does not succeed, "file" command is tried.
+     *
      * @param  string $file   Path to the file to get the type of
      * @param  bool   $params Append MIME parameters if true
      * @return string $file's MIME-type on success, PEAR_Error otherwise
@@ -328,15 +333,57 @@ class MIME_Type {
      */
     function autoDetect($file, $params = false)
     {
-        @include_once 'System/Command.php';
-        if (function_exists('mime_content_type')) {
-            $type = mime_content_type($file);
-        } else if (class_exists('System_Command')) {
-            $type = MIME_Type::_fileAutoDetect($file);
-        } else {
-            return PEAR::raiseError("Sorry, can't autodetect; you need the mime_magic extension or System_Command and 'file' installed to use this function.");
+        // Sanity checks
+        if (!file_exists($file)) {
+            return PEAR::raiseError("File \"$file\" doesn't exist");
         }
 
+        if (!is_readable($file)) {
+            return PEAR::raiseError("File \"$file\" is not readable");
+        }
+
+        if (function_exists('finfo_file')) {
+            $finfo = finfo_open(FILEINFO_MIME);
+            $type  = finfo_file($finfo, $file);
+            finfo_close($finfo);
+            if ($type !== false && $type !== '') {
+                return MIME_Type::_handleDetection($type, $params);
+            }
+        }
+
+        if (function_exists('mime_content_type')) {
+            $type = mime_content_type($file);
+            if ($type !== false && $type !== '') {
+                return MIME_Type::_handleDetection($type, $params);
+            }
+        }
+
+        @include_once 'System/Command.php';
+        if (class_exists('System_Command')) {
+            return MIME_Type::_handleDetection(
+                MIME_Type::_fileAutoDetect($file),
+                $params
+            );
+        }
+
+
+        return PEAR::raiseError(
+            "Sorry, can't autodetect; you need the fileinfo or"
+            . " mime_magic extension"
+            . " or System_Command and 'file' installed"
+            . " to use this function."
+        );
+    }
+
+    /**
+     * Handles a detected MIME type and modifies it if necessary.
+     *
+     * @param  string $file   Path to the file to get the type of
+     * @param  bool   $params Append MIME parameters if true
+     * @return string $file's MIME-type on success, PEAR_Error otherwise
+     */
+    function _handleDetection($type, $params)
+    {
         // _fileAutoDetect() may have returned an error.
         if (PEAR::isError($type)) {
             return $type;
@@ -367,16 +414,7 @@ class MIME_Type {
      */
     function _fileAutoDetect($file)
     {
-        // Sanity checks
-        if (!file_exists($file)) {
-            return PEAR::raiseError("File \"$file\" doesn't exist");
-        }
-        
-        if (!is_readable($file)) {
-            return PEAR::raiseError("File \"$file\" is not readable");
-        }
-        
-        $cmd = new System_Command;
+        $cmd = new System_Command();
 
 
         // Make sure we have the 'file' command.
