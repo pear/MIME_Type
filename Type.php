@@ -195,10 +195,10 @@ class MIME_Type {
      */
     function get()
     {
-        $type = strtolower($this->media.'/'.$this->subType);
+        $type = strtolower($this->media . '/' . $this->subType);
         if (count($this->parameters)) {
             foreach ($this->parameters as $key => $null) {
-                $type .= '; '.$this->parameters[$key]->get();
+                $type .= '; ' . $this->parameters[$key]->get();
             }
         }
         return $type;
@@ -217,7 +217,7 @@ class MIME_Type {
     function isExperimental($type)
     {
         if (substr(MIME_Type::getMedia($type), 0, 2) == 'x-' ||
-            substr(MIME_Type::getSubType($type), 0, 2) == 'x-') {
+            substr(MIME_Type::getSubType($type), 0, 2) == 'X-') {
             return true;
         }
         return false;
@@ -296,7 +296,7 @@ class MIME_Type {
      */
     function addParameter($name, $value, $comment = false)
     {
-        $tmp = &new MIME_Type_Parameter;
+        $tmp = &new MIME_Type_Parameter();
         $tmp->name = $name;
         $tmp->value = $value;
         $tmp->comment = $comment;
