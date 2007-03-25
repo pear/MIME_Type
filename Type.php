@@ -155,6 +155,63 @@ class MIME_Type {
         return $type;
     }
 
+    /**
+     * Removes comments from a media type, subtype or parameter.
+     *
+     * @param string $string    String to strip comments from
+     * @param string &$comment  If the comment is needed, it is stored in there
+     *                              if it's !== null
+     * @return string   String without comments
+     * @static
+     */
+    function stripComments($string, &$comment = null)
+    {
+        if (strpos($string, '(') === false) {
+            return $string;
+        }
+
+        $inquote   = false;
+        $quoting   = false;
+        $incomment = 0;
+        $newstring = '';
+
+        for ($n = 0; $n < strlen($string); $n++) {
+            if ($quoting) {
+                if ($incomment == 0) {
+                    $newstring .= $string[$n];
+                } else if ($comment !== null) {
+                    $comment .= $string[$n];
+                }
+                $quoting = false;
+            } else if ($string[$n] == '\\') {
+                $quoting = true;
+            } else if (!$inquote && $incomment > 0 && $string[$n] == ')') {
+                $incomment--;
+                if ($incomment == 0 && $comment !== null) {
+                    $comment .= ' ';
+                }
+            } else if (!$inquote && $string[$n] == '(') {
+                $incomment++;
+            } else if ($string[$n] == '"') {
+                if ($inquote) {
+                    $inquote = false;
+                } else {
+                    $inquote = true;
+                }
+            } else if ($incomment == 0) {
+                $newstring .= $string[$n];
+            } else if ($comment !== null) {
+                $comment .= $string[$n];
+            }
+        }
+
+        if ($comment !== null) {
+            $comment = trim($comment);
+        }
+
+        return $newstring;
+    }
+
 
     /**
      * Get a MIME type's media
@@ -167,7 +224,7 @@ class MIME_Type {
     function getMedia($type)
     {
         $tmp = explode('/', $type);
-        return strtolower($tmp[0]);
+        return strtolower(trim(MIME_Type::stripComments($tmp[0])));
     }
 
 
@@ -182,7 +239,7 @@ class MIME_Type {
     {
         $tmp = explode('/', $type);
         $tmp = explode(';', $tmp[1]);
-        return strtolower(trim($tmp[0]));
+        return strtolower(trim(MIME_Type::stripComments($tmp[0])));
     }
 
 
