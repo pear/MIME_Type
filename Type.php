@@ -217,7 +217,7 @@ class MIME_Type {
     function isExperimental($type)
     {
         if (substr(MIME_Type::getMedia($type), 0, 2) == 'x-' ||
-            substr(MIME_Type::getSubType($type), 0, 2) == 'X-') {
+            substr(MIME_Type::getSubType($type), 0, 2) == 'x-') {
             return true;
         }
         return false;
