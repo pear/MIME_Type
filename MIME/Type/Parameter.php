@@ -22,7 +22,7 @@
  * Class for working with MIME type parameters
  *
  * @version @version@
- * @package @package@
+ * @package MIME_Type
  * @author Ian Eure <ieure@php.net>
  */
 class MIME_Type_Parameter {

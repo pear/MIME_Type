@@ -1,147 +1,179 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- $Id: package.xml,v 1.5 2005-01-26 21:36:10 ieure Exp $ -->
-<package version="1.0">
-    <name>MIME_Type</name>
-    <summary>Utility class for dealing with MIME types</summary>
-    <description><![CDATA[
-        Provide functionality for dealing with MIME types.
-        * Parse MIME type.
-        * Supports full RFC2045 specification.
-        * Many utility functions for working with and determining info about types.
-        * Most functions can be called statically.
-        * Autodetect a file's mime-type, either with mime_content_type() or the 'file' command.
-    ]]></description>
-    <license>PHP License 3.0</license>
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.5.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+http://pear.php.net/dtd/tasks-1.0.xsd
+http://pear.php.net/dtd/package-2.0
+http://pear.php.net/dtd/package-2.0.xsd">
+ <name>MIME_Type</name>
+ <channel>pear.php.net</channel>
+ <summary>Utility class for dealing with MIME types</summary>
+ <description>Provide functionality for dealing with MIME types.
+* Parse MIME type.
+* Supports full RFC2045 specification.
+* Many utility functions for working with and determining info about types.
+* Most functions can be called statically.
+* Autodetect a file&apos;s mime-type, either with mime_content_type() or the &apos;file&apos; command.
+ </description>
+ <lead>
+  <name>Ian Eure</name>
+  <user>ieure</user>
+  <email>ieure@php.net</email>
+  <active>yes</active>
+ </lead>
+ <developer>
+  <name>Christian Weiske</name>
+  <user>cweiske</user>
+  <email>cweiske@php.net</email>
+  <active>yes</active>
+ </developer>
 
-    <maintainers>
-            <maintainer>
-            <user>ieure</user>
-            <role>lead</role>
-            <name>Ian Eure</name>
-            <email>ieure@php.net</email>
-        </maintainer>
-    </maintainers>
+ <date>2007-03-25</date>
+ <time>11:58:30</time>
 
-    <release>
-        <version>1.0.0</version>
-        <state>stable</state>
-        <date>2005-01-26</date>
-        <notes><![CDATA[
-            - No changes since 1.0.0beta3.
-        ]]></notes>
-        <filelist>
-            <dir name="/" baseinstalldir="MIME">
-                <file role="php" name="Type.php">
-                    <replace from="@version@" to="version" type="package-info"/>
-                    <replace from="@package@" to="package" type="package-info"/>
-                </file>
-            </dir>
-            <dir name="/" baseinstalldir="MIME/Type">
-                <file role="php" name="Parameter.php">
-                    <replace from="@version@" to="version" type="package-info"/>
-                    <replace from="@package@" to="package" type="package-info"/>
-                </file>
-            </dir>
-            <dir name="/" baseinstalldir="docs/MIME_Type">
-                <file role="php" name="example.php">
-                    <replace from="@package@" to="package" type="package-info"/>
-                    <replace from="@doc_dir@" to="doc_dir" type="pear-config"/>
-                </file>
-            </dir>
-        </filelist>
-    </release>
-    
-    <changelog>
-        <release>
-            <version>1.0.0beta3</version>
-            <state>beta</state>
-            <date>2004-08-07</date>
-            <notes><![CDATA[
-                * Add $parameters class var. (Fixes #2083)
-                * Quote filenames in _fileAutoDetect() (Fixes #2078)
-            ]]></notes>
-            <filelist>
-                <dir name="/" baseinstalldir="MIME">
-                    <file role="php" name="Type.php">
-                        <replace from="@version@" to="version" type="package-info"/>
-                        <replace from="@package@" to="package" type="package-info"/>
-                    </file>
-                </dir>
-                <dir name="/" baseinstalldir="MIME/Type">
-                    <file role="php" name="Parameter.php">
-                        <replace from="@version@" to="version" type="package-info"/>
-                        <replace from="@package@" to="package" type="package-info"/>
-                    </file>
-                </dir>
-                <dir name="/" baseinstalldir="docs/MIME_Type">
-                    <file role="php" name="example.php">
-                        <replace from="@package@" to="package" type="package-info"/>
-                        <replace from="@doc_dir@" to="doc_dir" type="pear-config"/>
-                    </file>
-                </dir>
-            </filelist>
-        </release>
-        <release>
-            <version>1.0.0beta2</version>
-            <state>beta</state>
-            <date>2004-06-16</date>
-            <notes><![CDATA[
-                * Make changes as requested during the proposal/vote process.
-            ]]></notes>
-            <filelist>
-                <dir name="/" baseinstalldir="MIME">
-                    <file role="php" name="Type.php">
-                        <replace from="@version@" to="version" type="package-info"/>
-                        <replace from="@package@" to="package" type="package-info"/>
-                    </file>
-                </dir>
-                <dir name="/" baseinstalldir="MIME/Type">
-                    <file role="php" name="Parameter.php">
-                        <replace from="@version@" to="version" type="package-info"/>
-                        <replace from="@package@" to="package" type="package-info"/>
-                    </file>
-                </dir>
-                <dir name="/" baseinstalldir="docs/MIME_Type">
-                    <file role="php" name="example.php">
-                        <replace from="@package@" to="package" type="package-info"/>
-                        <replace from="@doc_dir@" to="doc_dir" type="pear-config"/>
-                    </file>
-                </dir>
-            </filelist>
-        </release>
-        <release>
-            <version>1.0.0beta1</version>
-            <state>beta</state>
-            <date>2004-04-16</date>
-            <notes><![CDATA[
-                Initial PEARification
-                * Split most functionality off from MIME_ContentType
-            ]]></notes>
-            <filelist>
-                <dir name="/" baseinstalldir="MIME">
-                    <file role="php" name="Type.php">
-                        <replace from="@version@" to="version" type="package-info"/>
-                        <replace from="@package@" to="package" type="package-info"/>
-                    </file>
-                </dir>
-                <dir name="/" baseinstalldir="MIME/Type">
-                    <file role="php" name="Parameter.php">
-                        <replace from="@version@" to="version" type="package-info"/>
-                        <replace from="@package@" to="package" type="package-info"/>
-                    </file>
-                </dir>
-                <dir name="/" baseinstalldir="docs/MIME_Type">
-                    <file role="php" name="example.php">
-                        <replace from="@package@" to="package" type="package-info"/>
-                        <replace from="@doc_dir@" to="doc_dir" type="pear-config"/>
-                    </file>
-                </dir>
-            </filelist>
-        </release>
-    </changelog>
+ <version>
+  <release>1.1.0</release>
+  <api>1.1.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license>PHP License 3.0</license>
 
-    <deps>
-        <dep type="pkg" rel="ge" version="1.2.1">PEAR</dep>
-        <dep type="pkg" rel="has" optional="yes">System_Command</dep>
-    </deps>
+ <notes>
+ - Implementing request #3719: Use several methods when detecting mime type
+ - Fixing bug #6095: Parameters and comments parsing buggy
+ - Fixing bug #8603: function _fileAutoDetect() uses System_Command incorrectly
+ - Make example.php check for errors when detecting.
+ - Adding unit tests
+ </notes>
+
+ <contents>
+  <dir name="/">
+   <file baseinstalldir="docs/MIME_Type" name="example.php" role="php">
+    <tasks:replace from="@doc_dir@" to="doc_dir" type="pear-config" />
+   </file>
+   <dir name="MIME">
+    <file name="Type.php" role="php">
+     <tasks:replace from="@version@" to="version" type="package-info" />
+    </file>
+    <dir name="Type">
+     <file name="Parameter.php" role="php">
+      <tasks:replace from="@version@" to="version" type="package-info" />
+     </file>
+    </dir>
+   </dir>
+   <dir name="tests">
+    <file name="TypeTest.php" role="test" />
+   </dir>
+  </dir> <!-- / -->
+ </contents>
+
+ <dependencies>
+  <required>
+   <php>
+    <min>4.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.0b1</min>
+   </pearinstaller>
+   <package>
+    <name>PEAR</name>
+    <channel>pear.php.net</channel>
+    <min>1.2.1</min>
+   </package>
+  </required>
+  <optional>
+   <package>
+    <name>System_Command</name>
+    <channel>pear.php.net</channel>
+   </package>
+  </optional>
+ </dependencies>
+
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>1.1.0</release>
+    <api>1.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2007-03-25</date>
+   <license>PHP License 3.0</license>
+   <notes>
+ - Implementing request #3719: Use several methods when detecting mime type
+ - Fixing bug #6095: Parameters and comments parsing buggy
+ - Fixing bug #8603: function _fileAutoDetect() uses System_Command incorrectly
+ - Make example.php check for errors when detecting.
+ - Adding unit tests
+   </notes>
+  </release>
+
+  <release>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2005-01-26</date>
+   <license>PHP License 3.0</license>
+   <notes>
+   - No changes since 1.0.0beta3.
+   </notes>
+  </release>
+
+  <release>
+   <version>
+    <release>1.0.0beta3</release>
+    <api>1.0.0beta3</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2004-08-07</date>
+   <license>PHP License 3.0</license>
+   <notes>* Add $parameters class var. (Fixes #2083)
+* Quote filenames in _fileAutoDetect() (Fixes #2078)
+   </notes>
+  </release>
+
+  <release>
+   <version>
+    <release>1.0.0beta2</release>
+    <api>1.0.0beta2</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2004-06-16</date>
+   <license>PHP License 3.0</license>
+   <notes>* Make changes as requested during the proposal/vote process.
+   </notes>
+  </release>
+
+  <release>
+   <version>
+    <release>1.0.0beta1</release>
+    <api>1.0.0beta1</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2004-04-16</date>
+   <license>PHP License 3.0</license>
+   <notes>Initial PEARification
+* Split most functionality off from MIME_ContentType
+   </notes>
+  </release>
+
+ </changelog>
 </package>

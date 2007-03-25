@@ -27,7 +27,7 @@ $_fileCmd = 'file';
  * Class for working with MIME types
  *
  * @version @version@
- * @package @package@
+ * @package MIME_Type
  * @author Ian Eure <ieure@php.net>
  */
 class MIME_Type {
