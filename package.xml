@@ -49,9 +49,13 @@ http://pear.php.net/dtd/package-2.0.xsd">
 
  <contents>
   <dir name="/">
-   <file baseinstalldir="docs/MIME_Type" name="example.php" role="php">
-    <tasks:replace from="@doc_dir@" to="doc_dir" type="pear-config" />
-   </file>
+   <dir name="docs">
+    <dir name="examples">
+     <file name="example.php" role="php">
+      <tasks:replace from="@doc_dir@" to="doc_dir" type="pear-config" />
+     </file>
+    </dir>
+   </dir>
    <dir name="MIME">
     <file name="Type.php" role="php">
      <tasks:replace from="@version@" to="version" type="package-info" />
