@@ -30,7 +30,7 @@ http://pear.php.net/dtd/package-2.0.xsd">
  <time>11:58:30</time>
 
  <version>
-  <release>1.1.0</release>
+  <release>1.1.1</release>
   <api>1.1.0</api>
  </version>
  <stability>
@@ -40,11 +40,7 @@ http://pear.php.net/dtd/package-2.0.xsd">
  <license>PHP License 3.0</license>
 
  <notes>
- - Implementing request #3719: Use several methods when detecting mime type
- - Fixing bug #6095: Parameters and comments parsing buggy
- - Fixing bug #8603: function _fileAutoDetect() uses System_Command incorrectly
- - Make example.php check for errors when detecting.
- - Adding unit tests
+ - Fix #14150, notices due to use of =&amp; new.
  </notes>
 
  <contents>
