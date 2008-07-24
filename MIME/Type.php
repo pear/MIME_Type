@@ -3,7 +3,7 @@
 // +----------------------------------------------------------------------+
 // | PHP version 4                                                        |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 1997-2002 The PHP Group                                |
+// | Copyright (c) 1997-2002, 2008 The PHP Group                                |
 // +----------------------------------------------------------------------+
 // | This source file is subject to version 3.0 of the PHP license,       |
 // | that is bundled with this package in the file LICENSE, and is        |
@@ -99,7 +99,7 @@ class MIME_Type {
         if (MIME_Type::hasParameters($type)) {
             require_once 'MIME/Type/Parameter.php';
             foreach (MIME_Type::getParameters($type) as $param) {
-                $param = &new MIME_Type_Parameter($param);
+                $param = new MIME_Type_Parameter($param);
                 $this->parameters[$param->name] = $param;
             }
         }
@@ -353,7 +353,7 @@ class MIME_Type {
      */
     function addParameter($name, $value, $comment = false)
     {
-        $tmp = &new MIME_Type_Parameter();
+        $tmp = new MIME_Type_Parameter();
         $tmp->name = $name;
         $tmp->value = $value;
         $tmp->comment = $comment;
@@ -472,7 +472,6 @@ class MIME_Type {
     function _fileAutoDetect($file)
     {
         $cmd = new System_Command();
-
 
         // Make sure we have the 'file' command.
         $fileCmd = PEAR::getStaticProperty('MIME_Type', 'fileCmd');
