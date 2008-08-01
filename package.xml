@@ -26,12 +26,12 @@ http://pear.php.net/dtd/package-2.0.xsd">
   <active>yes</active>
  </developer>
 
- <date>2007-03-25</date>
- <time>11:58:30</time>
+ <date>2008-08-01</date>
+ <time>13:42:00</time>
 
  <version>
-  <release>1.1.1</release>
-  <api>1.1.0</api>
+  <release>1.1.2</release>
+  <api>1.1.2</api>
  </version>
  <stability>
   <release>stable</release>
@@ -40,7 +40,7 @@ http://pear.php.net/dtd/package-2.0.xsd">
  <license>PHP License 3.0</license>
 
  <notes>
- - Fix #14150, notices due to use of =&amp; new.
+- Fix bug #14417: Remove "&amp;$comments = null" since that's not supported in PHP4.
  </notes>
 
  <contents>
@@ -71,15 +71,15 @@ http://pear.php.net/dtd/package-2.0.xsd">
  <dependencies>
   <required>
    <php>
-    <min>4.0.0</min>
+    <min>4.3.0</min>
    </php>
    <pearinstaller>
-    <min>1.4.0b1</min>
+    <min>1.4.0</min>
    </pearinstaller>
    <package>
     <name>PEAR</name>
     <channel>pear.php.net</channel>
-    <min>1.2.1</min>
+    <min>1.4.0</min>
    </package>
   </required>
   <optional>
@@ -92,6 +92,39 @@ http://pear.php.net/dtd/package-2.0.xsd">
 
  <phprelease />
  <changelog>
+  <release>
+   <version>
+    <release>1.1.2</release>
+    <api>1.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2008-08-01</date>
+   <license>PHP License 3.0</license>
+   <notes>
+- Fix bug #14417: Remove "&amp;$comments = null" since that's not supported
+  in PHP4.
+   </notes>
+  </release>
+
+  <release>
+   <version>
+    <release>1.1.1</release>
+    <api>1.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2008-07-24</date>
+   <license>PHP License 3.0</license>
+   <notes>
+- Fix #14150, notices due to use of =&amp; new.
+   </notes>
+  </release>
+
   <release>
    <version>
     <release>1.1.0</release>

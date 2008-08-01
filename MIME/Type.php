@@ -159,12 +159,12 @@ class MIME_Type {
      * Removes comments from a media type, subtype or parameter.
      *
      * @param string $string    String to strip comments from
-     * @param string &$comment  If the comment is needed, it is stored in there
-     *                              if it's !== null
+     * @param string &$comment  Comment is stored in there.
+     *
      * @return string   String without comments
      * @static
      */
-    function stripComments($string, &$comment = null)
+    function stripComments($string, &$comment)
     {
         if (strpos($string, '(') === false) {
             return $string;
