@@ -224,7 +224,7 @@ class MIME_Type {
     function getMedia($type)
     {
         $tmp = explode('/', $type);
-        return strtolower(trim(MIME_Type::stripComments($tmp[0])));
+        return strtolower(trim(MIME_Type::stripComments($tmp[0], $null)));
     }
 
 
@@ -239,7 +239,7 @@ class MIME_Type {
     {
         $tmp = explode('/', $type);
         $tmp = explode(';', $tmp[1]);
-        return strtolower(trim(MIME_Type::stripComments($tmp[0])));
+        return strtolower(trim(MIME_Type::stripComments($tmp[0], $null)));
     }
 
 
