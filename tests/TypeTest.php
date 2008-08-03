@@ -46,42 +46,80 @@ class MIME_TypeTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @todo Implement testParse().
      */
-    public function testParse() {
-        // Remove the following line when you implement this test.
-        $this->markTestIncomplete(
-          "This test has not been implemented yet."
+    public function testParse()
+    {
+        $mt = new MIME_Type();
+        $mt->parse('application/ogg;description=Hello there!;asd=fgh');
+        $this->assertEquals('application', $mt->media);
+        $this->assertEquals('ogg'        , $mt->subType);
+
+        $params = array(
+            'description' => array('Hello there!', ''),
+            'asd' => array('fgh', '')
         );
+        $this->assertEquals(2, count($mt->parameters));
+        foreach ($params as $name => $param) {
+            $this->assertTrue(isset($mt->parameters[$name]));
+            $this->assertType('MIME_Type_Parameter', $mt->parameters[$name]);
+            $this->assertEquals($name,     $mt->parameters[$name]->name);
+            $this->assertEquals($param[0], $mt->parameters[$name]->value);
+            $this->assertEquals($param[1], $mt->parameters[$name]->comment);
+        }
     }
 
     /**
-     * @todo Implement testHasParameters().
      */
-    public function testHasParameters() {
-        // Remove the following line when you implement this test.
-        $this->markTestIncomplete(
-          "This test has not been implemented yet."
-        );
+    public function testParseAgain()
+    {
+        $mt = new MIME_Type();
+        $mt->parse('application/ogg;description=Hello there!;asd=fgh');
+        $this->assertEquals(2, count($mt->parameters));
+
+        $mt->parse('text/plain;hello=there!');
+        $this->assertEquals(1, count($mt->parameters));
     }
 
     /**
-     * @todo Implement testGetParameters().
+     *
      */
-    public function testGetParameters() {
-        // Remove the following line when you implement this test.
-        $this->markTestIncomplete(
-          "This test has not been implemented yet."
-        );
+    public function testHasParameters()
+    {
+        $this->assertFalse(MIME_Type::hasParameters('text/plain'));
+        $this->assertFalse(MIME_Type::hasParameters('text/*'));
+        $this->assertFalse(MIME_Type::hasParameters('*/*'));
+        $this->assertTrue(MIME_Type::hasParameters('text/xml;description=test'));
+        $this->assertTrue(MIME_Type::hasParameters('text/xml;one=test;two=three'));
     }
 
     /**
-     * @todo Implement testStripParameters().
+     *
      */
-    public function testStripParameters() {
-        // Remove the following line when you implement this test.
-        $this->markTestIncomplete(
-          "This test has not been implemented yet."
+    public function testGetParameters()
+    {
+        $this->assertEquals(
+            array(),
+            MIME_Type::getParameters('text/plain')
+        );
+        //rest is tested in testParse()
+    }
+
+    /**
+     *
+     */
+    public function testStripParameters()
+    {
+        $this->assertEquals(
+            'text/plain',
+            MIME_Type::stripParameters('text/plain')
+        );
+        $this->assertEquals(
+            'text/plain',
+            MIME_Type::stripParameters('text/plain;asd=def')
+        );
+        $this->assertEquals(
+            'text/plain',
+            MIME_Type::stripParameters('text/plain;asd=def;ghj=jkl')
         );
     }
 
@@ -102,58 +140,66 @@ class MIME_TypeTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @todo Implement testGetMedia().
+     *
      */
-    public function testGetMedia() {
-        // Remove the following line when you implement this test.
-        $this->markTestIncomplete(
-          "This test has not been implemented yet."
-        );
+    public function testGetMedia()
+    {
+        $this->assertEquals('text', MIME_Type::getMedia('text/plain'));
+        $this->assertEquals('application', MIME_Type::getMedia('application/ogg'));
+        $this->assertEquals('*', MIME_Type::getMedia('*/*'));
     }
 
     /**
-     * @todo Implement testGetSubType().
+     *
      */
-    public function testGetSubType() {
-        // Remove the following line when you implement this test.
-        $this->markTestIncomplete(
-          "This test has not been implemented yet."
-        );
+    public function testGetSubType()
+    {
+        $this->assertEquals('plain', MIME_Type::getSubType('text/plain'));
+        $this->assertEquals('ogg', MIME_Type::getSubType('application/ogg'));
+        $this->assertEquals('*', MIME_Type::getSubType('*/*'));
+        $this->assertEquals('plain', MIME_Type::getSubType('text/plain;a=b'));
     }
 
     /**
-     * @todo Implement testGet().
+     *
      */
-    public function testGet() {
-        // Remove the following line when you implement this test.
-        $this->markTestIncomplete(
-          "This test has not been implemented yet."
-        );
-    }
+    public function testGet()
+    {
+        $mt = new MIME_Type('text/xml');
+        $this->assertEquals('text/xml', $mt->get());
 
-    /**
-     * @todo Implement testIsExperimental().
-     */
-    public function testIsExperimental() {
-        $this->assertTrue(MIME_Type::isExperimental('text/x-test'));
-        $this->assertTrue(MIME_Type::isExperimental('image/X-test'));
-        $this->assertFalse(MIME_Type::isExperimental('text/plain'));
-    }
-
-    /**
-     * @todo Implement testIsVendor().
-     */
-    public function testIsVendor() {
-        // Remove the following line when you implement this test.
-        $this->markTestIncomplete(
-          "This test has not been implemented yet."
+        $mt = new MIME_Type('text/xml; this="is"; a="parameter" (with a comment)');
+        $this->assertEquals(
+            'text/xml; this="is"; a="parameter" (with a comment)',
+            $mt->get()
         );
     }
 
     /**
      *
      */
-    public function testIsWildcard() {
+    public function testIsExperimental()
+    {
+        $this->assertTrue(MIME_Type::isExperimental('text/x-test'));
+        $this->assertTrue(MIME_Type::isExperimental('image/X-test'));
+        $this->assertFalse(MIME_Type::isExperimental('text/plain'));
+    }
+
+    /**
+     *
+     */
+    public function testIsVendor()
+    {
+        $this->assertTrue(MIME_Type::isVendor('application/vnd.openoffice'));
+        $this->assertFalse(MIME_Type::isVendor('application/vendor.openoffice'));
+        $this->assertFalse(MIME_Type::isVendor('vnd/fsck'));
+    }
+
+    /**
+     *
+     */
+    public function testIsWildcard()
+    {
         $this->assertTrue(MIME_Type::isWildcard('*/*'));
         $this->assertTrue(MIME_Type::isWildcard('image/*'));
         $this->assertFalse(MIME_Type::isWildcard('text/plain'));
@@ -189,33 +235,25 @@ class MIME_TypeTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @todo Implement testAutoDetect().
+     *
      */
-    public function testAutoDetect() {
-        // Remove the following line when you implement this test.
-        $this->markTestIncomplete(
-          "This test has not been implemented yet."
-        );
-    }
+    public function testAutoDetect()
+    {
+        $dir = dirname(__FILE__) . '/files/';
 
-    /**
-     * @todo Implement test_handleDetection().
-     */
-    public function test_handleDetection() {
-        // Remove the following line when you implement this test.
-        $this->markTestIncomplete(
-          "This test has not been implemented yet."
+        $mt = new MIME_Type(
+            MIME_Type::autoDetect($dir . 'example.png')
         );
-    }
+        $this->assertType('MIME_Type', $mt);
+        $this->assertEquals('image', $mt->media);
+        $this->assertEquals('png', $mt->subType);
 
-    /**
-     * @todo Implement test_fileAutoDetect().
-     */
-    public function test_fileAutoDetect() {
-        // Remove the following line when you implement this test.
-        $this->markTestIncomplete(
-          "This test has not been implemented yet."
+        $mt = new MIME_Type(
+            MIME_Type::autoDetect($dir . 'example.jpg')
         );
+        $this->assertType('MIME_Type', $mt);
+        $this->assertEquals('image', $mt->media);
+        $this->assertEquals('jpeg', $mt->subType);
     }
 
     public function testComments()

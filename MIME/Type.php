@@ -26,11 +26,15 @@ $_fileCmd = 'file';
 /**
  * Class for working with MIME types
  *
- * @version @version@
- * @package MIME_Type
- * @author Ian Eure <ieure@php.net>
+ * @category MIME
+ * @package  MIME_Type
+ * @license  PHP License 3.0
+ * @version  @version@
+ * @link     http://pear.php.net/package/MIME_Type
+ * @author   Ian Eure <ieure@php.net>
  */
-class MIME_Type {
+class MIME_Type
+{
     /**
      * The MIME media type
      *
@@ -53,7 +57,9 @@ class MIME_Type {
     var $parameters = array();
 
     /**
-     * List of valid media types
+     * List of valid media types.
+     * A media type is the string in front of the slash.
+     * The media type of "text/xml" would be "text".
      *
      * @var array
      */
@@ -71,11 +77,12 @@ class MIME_Type {
     /**
      * Constructor.
      *
-     * If $type is set, if will be parsed and the appropriate class vars set. If not,
-     * you get an empty class. This is useful, but not quite as useful as parsing a
-     * type.
+     * If $type is set, if will be parsed and the appropriate class vars set.
+     * If not, you get an empty class.
+     * This is useful, but not quite as useful as parsing a type.
      *
-     * @param  string $type MIME type
+     * @param string $type MIME type
+     *
      * @return void
      */
     function MIME_Type($type = false)
@@ -87,15 +94,17 @@ class MIME_Type {
 
 
     /**
-     * Parse a mime-type
+     * Parse a mime-type and set the class variables.
      *
-     * @param  $type string MIME type to parse
+     * @param string $type MIME type to parse
+     *
      * @return void
      */
     function parse($type)
     {
-        $this->media = $this->getMedia($type);
-        $this->subType = $this->getSubType($type);
+        $this->media      = $this->getMedia($type);
+        $this->subType    = $this->getSubType($type);
+        $this->parameters = array();
         if (MIME_Type::hasParameters($type)) {
             require_once 'MIME/Type/Parameter.php';
             foreach (MIME_Type::getParameters($type) as $param) {
@@ -109,7 +118,8 @@ class MIME_Type {
     /**
      * Does this type have any parameters?
      *
-     * @param  $type   string MIME type to check
+     * @param string $type MIME type to check
+     *
      * @return boolean true if $type has parameters, false otherwise
      * @static
      */
@@ -125,14 +135,15 @@ class MIME_Type {
     /**
      * Get a MIME type's parameters
      *
-     * @param  $type string MIME type to get parameters of
+     * @param string $type MIME type to get parameters of
+     *
      * @return array $type's parameters
      * @static
      */
     function getParameters($type)
     {
         $params = array();
-        $tmp = explode(';', $type);
+        $tmp    = explode(';', $type);
         for ($i = 1; $i < count($tmp); $i++) {
             $params[] = trim($tmp[$i]);
         }
@@ -141,9 +152,10 @@ class MIME_Type {
 
 
     /**
-     * Strip paramaters from a MIME type string
+     * Strip parameters from a MIME type string.
      *
-     * @param  string $type MIME type string
+     * @param string $type MIME type string
+     *
      * @return string MIME type with parameters removed
      * @static
      */
@@ -155,11 +167,12 @@ class MIME_Type {
         return $type;
     }
 
+
     /**
      * Removes comments from a media type, subtype or parameter.
      *
-     * @param string $string    String to strip comments from
-     * @param string &$comment  Comment is stored in there.
+     * @param string $string   String to strip comments from
+     * @param string &$comment Comment is stored in there.
      *
      * @return string   String without comments
      * @static
@@ -216,8 +229,10 @@ class MIME_Type {
     /**
      * Get a MIME type's media
      *
-     * @note   'media' refers to the portion before the first slash
-     * @param  $type  string MIME type to get media of
+     * @note 'media' refers to the portion before the first slash
+     *
+     * @param string $type MIME type to get media of
+     *
      * @return string $type's media
      * @static
      */
@@ -231,7 +246,8 @@ class MIME_Type {
     /**
      * Get a MIME type's subtype
      *
-     * @param  $type string MIME type to get subtype of
+     * @param string $type MIME type to get subtype of
+     *
      * @return string $type's subtype
      * @static
      */
@@ -265,9 +281,11 @@ class MIME_Type {
     /**
      * Is this type experimental?
      *
-     * @note   Experimental types are denoted by a leading 'x-' in the media or
-     *         subtype, e.g. text/x-vcard or x-world/x-vrml.
-     * @param  string $type MIME type to check
+     * @note Experimental types are denoted by a leading 'x-' in the media or
+     *       subtype, e.g. text/x-vcard or x-world/x-vrml.
+     *
+     * @param string $type MIME type to check
+     *
      * @return boolean true if $type is experimental, false otherwise
      * @static
      */
@@ -284,8 +302,10 @@ class MIME_Type {
     /**
      * Is this a vendor MIME type?
      *
-     * @note   Vendor types are denoted with a leading 'vnd. in the subtype.
-     * @param  string  $type MIME type to check
+     * @note Vendor types are denoted with a leading 'vnd. in the subtype.
+     *
+     * @param string $type MIME type to check
+     *
      * @return boolean true if $type is a vendor type, false otherwise
      * @static
      */
@@ -301,7 +321,8 @@ class MIME_Type {
     /**
      * Is this a wildcard type?
      *
-     * @param  string  $type MIME type to check
+     * @param string $type MIME type to check
+     *
      * @return boolean true if $type is a wildcard, false otherwise
      * @static
      */
@@ -320,8 +341,9 @@ class MIME_Type {
      * Example:
      * MIME_Type::wildcardMatch('image/*', 'image/png')
      *
-     * @param  string  $card Wildcard to check against
-     * @param  string  $type MIME type to check
+     * @param string $card Wildcard to check against
+     * @param string $type MIME type to check
+     *
      * @return boolean true if there was a match, false otherwise
      * @static
      */
@@ -335,10 +357,10 @@ class MIME_Type {
             return true;
         }
 
-        if (MIME_Type::getMedia($card) ==
-            MIME_Type::getMedia($type)) {
+        if (MIME_Type::getMedia($card) == MIME_Type::getMedia($type)) {
             return true;
         }
+
         return false;
     }
 
@@ -346,17 +368,19 @@ class MIME_Type {
     /**
      * Add a parameter to this type
      *
-     * @param  string $name    Attribute name
-     * @param  string $value   Attribute value
-     * @param  string $comment Comment for this parameter
+     * @param string $name    Attribute name
+     * @param string $value   Attribute value
+     * @param string $comment Comment for this parameter
+     *
      * @return void
      */
     function addParameter($name, $value, $comment = false)
     {
         $tmp = new MIME_Type_Parameter();
-        $tmp->name = $name;
-        $tmp->value = $value;
-        $tmp->comment = $comment;
+
+        $tmp->name               = $name;
+        $tmp->value              = $value;
+        $tmp->comment            = $comment;
         $this->parameters[$name] = $tmp;
     }
 
@@ -364,12 +388,13 @@ class MIME_Type {
     /**
      * Remove a parameter from this type
      *
-     * @param  string $name Parameter name
+     * @param string $name Parameter name
+     *
      * @return void
      */
     function removeParameter($name)
     {
-        unset ($this->parameters[$name]);
+        unset($this->parameters[$name]);
     }
 
 
@@ -382,9 +407,11 @@ class MIME_Type {
      *  does not work, mime_magic is used. If this is also not available
      *  or does not succeed, "file" command is tried.
      *
-     * @param  string $file   Path to the file to get the type of
-     * @param  bool   $params Append MIME parameters if true
+     * @param string $file   Path to the file to get the type of
+     * @param bool   $params Append MIME parameters if true
+     *
      * @return string $file's MIME-type on success, PEAR_Error otherwise
+     *
      * @since 1.0.0beta1
      * @static
      */
@@ -432,11 +459,13 @@ class MIME_Type {
         );
     }
 
+
     /**
      * Handles a detected MIME type and modifies it if necessary.
      *
-     * @param  string $file   Path to the file to get the type of
-     * @param  bool   $params Append MIME parameters if true
+     * @param string $type   MIME Type of a file
+     * @param bool   $params Append MIME parameters if true
+     *
      * @return string $file's MIME-type on success, PEAR_Error otherwise
      */
     function _handleDetection($type, $params)
@@ -459,13 +488,16 @@ class MIME_Type {
         return $type;
     }
 
+
     /**
      * Autodetect a file's MIME-type with 'file' and System_Command
      *
      * This function may be called staticly.
      *
-     * @param  string $file   Path to the file to get the type of
+     * @param string $file Path to the file to get the type of
+     *
      * @return string $file's MIME-type
+     *
      * @since 1.0.0beta1
      * @static
      */
@@ -486,4 +518,5 @@ class MIME_Type {
 
         return $res;
     }
+
 }
