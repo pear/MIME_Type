@@ -248,12 +248,15 @@ class MIME_Type
      *
      * @param string $type MIME type to get subtype of
      *
-     * @return string $type's subtype
+     * @return string $type's subtype, null if invalid mime type
      * @static
      */
     function getSubType($type)
     {
         $tmp = explode('/', $type);
+        if (!isset($tmp[1])) {
+            return null;
+        }
         $tmp = explode(';', $tmp[1]);
         return strtolower(trim(MIME_Type::stripComments($tmp[0], $null)));
     }
@@ -405,7 +408,9 @@ class MIME_Type
      *
      * @internal Tries to use fileinfo extension at first. If that
      *  does not work, mime_magic is used. If this is also not available
-     *  or does not succeed, "file" command is tried.
+     *  or does not succeed, "file" command is tried to be executed with
+     *  System_Command. When that fails, too, then we use our in-built
+     *  extension-to-mimetype-mapping list.
      *
      * @param string $file   Path to the file to get the type of
      * @param bool   $params Append MIME parameters if true
@@ -450,13 +455,9 @@ class MIME_Type
             );
         }
 
-
-        return PEAR::raiseError(
-            "Sorry, can't autodetect; you need the fileinfo or"
-            . " mime_magic extension"
-            . " or System_Command and 'file' installed"
-            . " to use this function."
-        );
+        require_once 'MIME/Type/Extension.php';
+        $mte = new MIME_Type_Extension();
+        return $mte->getMIMEType($file);
     }
 
 

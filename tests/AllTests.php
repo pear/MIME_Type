@@ -8,6 +8,7 @@ require_once 'PHPUnit/TextUI/TestRunner.php';
 
 chdir(dirname(__FILE__) . '/../');
 require_once 'TypeTest.php';
+require_once 'MIME_Type_ExtensionTest.php';
 
 
 class MIME_Type_AllTests
@@ -22,6 +23,7 @@ class MIME_Type_AllTests
         $suite = new PHPUnit_Framework_TestSuite('MIME_Type tests');
         /** Add testsuites, if there is. */
         $suite->addTestSuite('MIME_TypeTest');
+        $suite->addTestSuite('MIME_Type_ExtensionTest');
 
         return $suite;
     }
