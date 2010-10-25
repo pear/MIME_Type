@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.5.1" version="2.0"
- xmlns="http://pear.php.net/dtd/package-2.0"
- xmlns:tasks="http://pear.php.net/dtd/tasks-1.0"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
-http://pear.php.net/dtd/tasks-1.0.xsd
-http://pear.php.net/dtd/package-2.0
-http://pear.php.net/dtd/package-2.0.xsd"
->
+<package packagerversion="1.9.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
  <name>MIME_Type</name>
  <channel>pear.php.net</channel>
  <summary>Utility class for dealing with MIME types</summary>
@@ -17,9 +9,7 @@ http://pear.php.net/dtd/package-2.0.xsd"
 * Many utility functions for working with and determining info about types.
 * Most functions can be called statically.
 * Autodetect a file&apos;s mime-type, either with fileinfo extension,
-  mime_magic extension, the &apos;file&apos; command or an in-built mapping list
- </description>
-
+  mime_magic extension, the &apos;file&apos; command or an in-built mapping list</description>
  <lead>
   <name>Ian Eure</name>
   <user>ieure</user>
@@ -32,60 +22,39 @@ http://pear.php.net/dtd/package-2.0.xsd"
   <email>cweiske@php.net</email>
   <active>yes</active>
  </developer>
-
- <date>2009-01-16</date>
- <time>09:42:00</time>
-
+ <date>2010-10-25</date>
+ <time>23:16:29</time>
  <version>
-  <release>1.2.0</release>
+  <release>1.2.1</release>
   <api>1.2.0</api>
  </version>
-
  <stability>
   <release>stable</release>
   <api>stable</api>
  </stability>
  <license>PHP License 3.0</license>
-
  <notes>
-* Extension-to-MIMEType mapper by Christian Schmidt, bug #13646
+Automatically built QA release
+Req #13646 Default to Mime Type based on Extension - cweiske
  </notes>
-
  <contents>
-  <dir name="/">
-   <dir name="docs">
-    <dir name="examples">
-     <file name="example.php" role="php">
-      <tasks:replace from="@doc_dir@" to="doc_dir" type="pear-config" />
-     </file>
-    </dir>
-   </dir>
-   <dir name="MIME">
-    <file name="Type.php" role="php">
-     <tasks:replace from="@version@" to="version" type="package-info" />
-    </file>
-    <dir name="Type">
-     <file name="Parameter.php" role="php">
-      <tasks:replace from="@version@" to="version" type="package-info" />
-     </file>
-    </dir>
-   </dir>
-   <dir name="tests">
-    <file name="AllTests.php" role="test" />
-    <file name="TypeTest.php" role="test" />
-    <dir name="files">
-     <file name="example.bmp" role="test" />
-     <file name="example.gif" role="test" />
-     <file name="example.jpg" role="test" />
-     <file name="example.png" role="test" />
-     <file name="example.txt" role="test" />
-     <file name="example.txt.bz2" role="test" />
-     <file name="example.txt.gz" role="test" />
-    </dir>
-   </dir>
-  </dir> <!-- / -->
+  <dir baseinstalldir="/" name="/">
+   <file baseinstalldir="/" md5sum="d4a7c9a53d3a0c9a293559f7ad8c7937" name="docs/examples/example.php" role="doc" />
+   <file baseinstalldir="/" md5sum="46fb8c031e164196ba25453fe6dc58e9" name="MIME/Type.php" role="php" />
+   <file baseinstalldir="/" md5sum="075c547b0484b5ca9ad401fe5b593b3c" name="MIME/Type/Extension.php" role="php" />
+   <file baseinstalldir="/" md5sum="94a6073b1137f1d75e14a9791a4d28e2" name="MIME/Type/Parameter.php" role="php" />
+   <file baseinstalldir="/" md5sum="76b3653c3eed09b95cc64294024512d2" name="tests/AllTests.php" role="test" />
+   <file baseinstalldir="/" md5sum="cac94e4f71b33607dd4f3a79a670d568" name="tests/MIME_Type_ExtensionTest.php" role="test" />
+   <file baseinstalldir="/" md5sum="bc10846e3755c7729d5f37416c0883d8" name="tests/TypeTest.php" role="test" />
+   <file baseinstalldir="/" md5sum="e711aa23c64b7aba6fe0eb2514cd892b" name="tests/files/example.bmp" role="test" />
+   <file baseinstalldir="/" md5sum="288a5568dad31d7e961aa4e0feb53acf" name="tests/files/example.gif" role="test" />
+   <file baseinstalldir="/" md5sum="07e45f74fa45d72ca3ef3abf6d594974" name="tests/files/example.jpg" role="test" />
+   <file baseinstalldir="/" md5sum="18891f92b7e1e1b5a480a70226d22a63" name="tests/files/example.png" role="test" />
+   <file baseinstalldir="/" md5sum="7926caaf09e43134fcb571fb1278a678" name="tests/files/example.txt" role="test" />
+   <file baseinstalldir="/" md5sum="1fd5d673c016a26fa5385132a3675ba3" name="tests/files/example.txt.bz2" role="test" />
+   <file baseinstalldir="/" md5sum="bca061774f382a151df680eb5c2a6d9c" name="tests/files/example.txt.gz" role="test" />
+  </dir>
  </contents>
-
  <dependencies>
   <required>
    <php>
@@ -107,26 +76,120 @@ http://pear.php.net/dtd/package-2.0.xsd"
    </package>
   </optional>
  </dependencies>
-
  <phprelease />
-
  <changelog>
   <release>
    <version>
-    <release>1.2.0</release>
-    <api>1.2.0</api>
+    <release>1.0.0beta1</release>
+    <api>1.0.0beta1</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2004-04-16</date>
+   <license>PHP License 3.0</license>
+   <notes>
+Initial PEARification
+* Split most functionality off from MIME_ContentType
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0beta2</release>
+    <api>1.0.0beta2</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2004-06-16</date>
+   <license>PHP License 3.0</license>
+   <notes>
+* Make changes as requested during the proposal/vote process.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0beta3</release>
+    <api>1.0.0beta3</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2004-08-07</date>
+   <license>PHP License 3.0</license>
+   <notes>
+* Add $parameters class var. (Fixes #2083)
+* Quote filenames in _fileAutoDetect() (Fixes #2078)
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
    </version>
    <stability>
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2009-01-16</date>
+   <date>2005-01-26</date>
    <license>PHP License 3.0</license>
    <notes>
-* Extension-to-MIMEType mapper by Christian Schmidt, bug #13646
+- No changes since 1.0.0beta3.
    </notes>
   </release>
-
+  <release>
+   <version>
+    <release>1.1.0</release>
+    <api>1.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2007-03-25</date>
+   <license>PHP License 3.0</license>
+   <notes>
+- Implementing request #3719: Use several methods when detecting mime type
+- Fixing bug #6095: Parameters and comments parsing buggy
+- Fixing bug #8603: function _fileAutoDetect() uses System_Command incorrectly
+- Make example.php check for errors when detecting.
+- Adding unit tests
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.1.1</release>
+    <api>1.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2008-07-24</date>
+   <license>PHP License 3.0</license>
+   <notes>
+- Fix #14150, notices due to use of =&amp; new.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.1.2</release>
+    <api>1.1.2</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2008-08-01</date>
+   <license>PHP License 3.0</license>
+   <notes>
+- Fix bug #14417: Remove &quot;&amp;$comments = null&quot; since that&apos;s not supported
+  in PHP4.
+   </notes>
+  </release>
   <release>
    <version>
     <release>1.1.3</release>
@@ -144,122 +207,36 @@ http://pear.php.net/dtd/package-2.0.xsd"
 - more tests
    </notes>
   </release>
-
   <release>
    <version>
-    <release>1.1.2</release>
-    <api>1.1.2</api>
+    <release>1.2.0</release>
+    <api>1.2.0</api>
    </version>
    <stability>
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2008-08-01</date>
+   <date>2009-01-16</date>
    <license>PHP License 3.0</license>
    <notes>
-- Fix bug #14417: Remove "&amp;$comments = null" since that's not supported
-  in PHP4.
+* Extension-to-MIMEType mapper by Christian Schmidt, bug #13646
    </notes>
   </release>
-
   <release>
    <version>
-    <release>1.1.1</release>
-    <api>1.1.0</api>
+    <release>1.2.1</release>
+    <api>1.2.0</api>
    </version>
    <stability>
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2008-07-24</date>
+   <date>2010-10-25</date>
    <license>PHP License 3.0</license>
    <notes>
-- Fix #14150, notices due to use of =&amp; new.
+Automatically built QA release
+Req #13646 Default to Mime Type based on Extension - cweiske
    </notes>
   </release>
-
-  <release>
-   <version>
-    <release>1.1.0</release>
-    <api>1.1.0</api>
-   </version>
-   <stability>
-    <release>stable</release>
-    <api>stable</api>
-   </stability>
-   <date>2007-03-25</date>
-   <license>PHP License 3.0</license>
-   <notes>
- - Implementing request #3719: Use several methods when detecting mime type
- - Fixing bug #6095: Parameters and comments parsing buggy
- - Fixing bug #8603: function _fileAutoDetect() uses System_Command incorrectly
- - Make example.php check for errors when detecting.
- - Adding unit tests
-   </notes>
-  </release>
-
-  <release>
-   <version>
-    <release>1.0.0</release>
-    <api>1.0.0</api>
-   </version>
-   <stability>
-    <release>stable</release>
-    <api>stable</api>
-   </stability>
-   <date>2005-01-26</date>
-   <license>PHP License 3.0</license>
-   <notes>
-   - No changes since 1.0.0beta3.
-   </notes>
-  </release>
-
-  <release>
-   <version>
-    <release>1.0.0beta3</release>
-    <api>1.0.0beta3</api>
-   </version>
-   <stability>
-    <release>beta</release>
-    <api>beta</api>
-   </stability>
-   <date>2004-08-07</date>
-   <license>PHP License 3.0</license>
-   <notes>* Add $parameters class var. (Fixes #2083)
-* Quote filenames in _fileAutoDetect() (Fixes #2078)
-   </notes>
-  </release>
-
-  <release>
-   <version>
-    <release>1.0.0beta2</release>
-    <api>1.0.0beta2</api>
-   </version>
-   <stability>
-    <release>beta</release>
-    <api>beta</api>
-   </stability>
-   <date>2004-06-16</date>
-   <license>PHP License 3.0</license>
-   <notes>* Make changes as requested during the proposal/vote process.
-   </notes>
-  </release>
-
-  <release>
-   <version>
-    <release>1.0.0beta1</release>
-    <api>1.0.0beta1</api>
-   </version>
-   <stability>
-    <release>beta</release>
-    <api>beta</api>
-   </stability>
-   <date>2004-04-16</date>
-   <license>PHP License 3.0</license>
-   <notes>Initial PEARification
-* Split most functionality off from MIME_ContentType
-   </notes>
-  </release>
-
  </changelog>
 </package>
