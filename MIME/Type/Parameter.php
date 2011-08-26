@@ -123,6 +123,9 @@ class MIME_Type_Parameter {
     function getComment($param)
     {
         $cs = strpos($param, '(');
+        if ($cs === false) {
+            return null;
+        }
         $comment = substr($param, $cs);
         return trim($comment, '() ');
     }
