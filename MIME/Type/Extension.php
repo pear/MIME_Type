@@ -1,22 +1,16 @@
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
-// +----------------------------------------------------------------------+
-// | PHP versions 4 and 5                                                 |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 1997-2009 The PHP Group                                |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 3.0 of the PHP license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available at through the world-wide-web at                           |
-// | http://www.php.net/license/3_0.txt.                                  |
-// | If you did not receive a copy of the PHP license and are unable to   |
-// | obtain it through the world-wide-web, please send a note to          |
-// | license@php.net so we can mail you a copy immediately.               |
-// +----------------------------------------------------------------------+
-// | Authors: Christian Schmidt <schmidt@php.net>                         |
-// +----------------------------------------------------------------------+
-//
-// $Id$
+/**
+ * Part of MIME_Type
+ *
+ * PHP version 4 and 5
+ *
+ * @category File
+ * @package  MIME_Type
+ * @author   Christian Schmidt <schmidt@php.net>
+ * @license  http://www.php.net/license/3_0.txt PHP License 3.0
+ * @link     http://pear.php.net/package/MIME_Type
+ */
 
 require_once 'PEAR.php';
 
@@ -27,7 +21,7 @@ require_once 'PEAR.php';
  * @package  MIME_Type
  * @author   Christian Schmidt <schmidt@php.net>
  * @license  PHP License 3.0
- * @version  @version@
+ * @version  Release: @version@
  * @link     http://pear.php.net/package/MIME_Type
  */
 class MIME_Type_Extension
@@ -282,7 +276,7 @@ class MIME_Type_Extension
      */
     function getExtension($type)
     {
-        require_once 'MIME/Type.php';
+        include_once 'MIME/Type.php';
         // Strip parameters and comments.
         $type = MIME_Type::getMedia($type) . '/' . MIME_Type::getSubType($type);
 
