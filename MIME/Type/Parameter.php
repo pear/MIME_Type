@@ -1,31 +1,29 @@
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
-// +----------------------------------------------------------------------+
-// | PHP version 4                                                        |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 1997-2002 The PHP Group                                |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 3.0 of the PHP license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available at through the world-wide-web at                           |
-// | http://www.php.net/license/3_0.txt.                                  |
-// | If you did not receive a copy of the PHP license and are unable to   |
-// | obtain it through the world-wide-web, please send a note to          |
-// | license@php.net so we can mail you a copy immediately.               |
-// +----------------------------------------------------------------------+
-// | Authors: Ian Eure <ieure@php.net>                                    |
-// +----------------------------------------------------------------------+
-//
-// $Id$
+/**
+ * Part of MIME_Type
+ *
+ * PHP version 4 and 5
+ *
+ * @category File
+ * @package  MIME_Type
+ * @author   Ian Eure <ieure@php.net>
+ * @license  http://www.php.net/license/3_0.txt PHP License 3.0
+ * @link     http://pear.php.net/package/MIME_Type
+ */
 
 /**
  * Class for working with MIME type parameters
  *
- * @version @version@
- * @package MIME_Type
- * @author Ian Eure <ieure@php.net>
+ * @category File
+ * @package  MIME_Type
+ * @author   Ian Eure <ieure@php.net>
+ * @license  http://www.php.net/license/3_0.txt PHP License 3.0
+ * @version  Release: @version@
+ * @link     http://pear.php.net/package/MIME_Type
  */
-class MIME_Type_Parameter {
+class MIME_Type_Parameter
+{
     /**
      * Parameter name
      *
@@ -51,7 +49,8 @@ class MIME_Type_Parameter {
     /**
      * Constructor.
      *
-     * @param  string $param MIME parameter to parse, if set.
+     * @param string $param MIME parameter to parse, if set.
+     *
      * @return void
      */
     function MIME_Type_Parameter($param = false)
@@ -65,7 +64,8 @@ class MIME_Type_Parameter {
     /**
      * Parse a MIME type parameter and set object fields
      *
-     * @param  string $param MIME type parameter to parse
+     * @param string $param MIME type parameter to parse
+     *
      * @return void
      */
     function parse($param)
@@ -81,7 +81,8 @@ class MIME_Type_Parameter {
     /**
      * Get a parameter attribute (e.g. name)
      *
-     * @param  string MIME type parameter
+     * @param string $param MIME type parameter
+     *
      * @return string Attribute name
      * @static
      */
@@ -95,7 +96,8 @@ class MIME_Type_Parameter {
     /**
      * Get a parameter value
      *
-     * @param  string $param MIME type parameter
+     * @param string $param MIME type parameter
+     *
      * @return string Value
      * @static
      */
@@ -115,9 +117,10 @@ class MIME_Type_Parameter {
     /**
      * Get a parameter comment
      *
-     * @param  string $param MIME type parameter
+     * @param string $param MIME type parameter
+     *
      * @return string Parameter comment
-     * @see getComment()
+     * @see    hasComment()
      * @static
      */
     function getComment($param)
@@ -134,7 +137,8 @@ class MIME_Type_Parameter {
     /**
      * Does this parameter have a comment?
      *
-     * @param  string  $param MIME type parameter
+     * @param string $param MIME type parameter
+     *
      * @return boolean true if $param has a comment, false otherwise
      * @static
      */
