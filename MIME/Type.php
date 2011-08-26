@@ -1,22 +1,16 @@
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
-// +----------------------------------------------------------------------+
-// | PHP version 4                                                        |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 1997-2002, 2008 The PHP Group                                |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 3.0 of the PHP license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available at through the world-wide-web at                           |
-// | http://www.php.net/license/3_0.txt.                                  |
-// | If you did not receive a copy of the PHP license and are unable to   |
-// | obtain it through the world-wide-web, please send a note to          |
-// | license@php.net so we can mail you a copy immediately.               |
-// +----------------------------------------------------------------------+
-// | Authors: Ian Eure <ieure@php.net>                                    |
-// +----------------------------------------------------------------------+
-//
-// $Id$
+/**
+ * Part of MIME_Type
+ *
+ * PHP version 4 and 5
+ *
+ * @category File
+ * @package  MIME_Type
+ * @author   Ian Eure <ieure@php.net>
+ * @license  http://www.php.net/license/3_0.txt PHP License 3.0
+ * @link     http://pear.php.net/package/MIME_Type
+ */
 
 require_once 'PEAR.php';
 
@@ -28,10 +22,10 @@ $_fileCmd = 'file';
  *
  * @category MIME
  * @package  MIME_Type
- * @license  PHP License 3.0
- * @version  @version@
- * @link     http://pear.php.net/package/MIME_Type
  * @author   Ian Eure <ieure@php.net>
+ * @license  PHP License 3.0
+ * @version  Release: @version@
+ * @link     http://pear.php.net/package/MIME_Type
  */
 class MIME_Type
 {
@@ -106,7 +100,7 @@ class MIME_Type
         $this->subType    = $this->getSubType($type);
         $this->parameters = array();
         if (MIME_Type::hasParameters($type)) {
-            require_once 'MIME/Type/Parameter.php';
+            include_once 'MIME/Type/Parameter.php';
             foreach (MIME_Type::getParameters($type) as $param) {
                 $param = new MIME_Type_Parameter($param);
                 $this->parameters[$param->name] = $param;
@@ -228,8 +222,7 @@ class MIME_Type
 
     /**
      * Get a MIME type's media
-     *
-     * @note 'media' refers to the portion before the first slash
+     * Note: 'media' refers to the portion before the first slash
      *
      * @param string $type MIME type to get media of
      *
@@ -284,7 +277,7 @@ class MIME_Type
     /**
      * Is this type experimental?
      *
-     * @note Experimental types are denoted by a leading 'x-' in the media or
+     * Note: Experimental types are denoted by a leading 'x-' in the media or
      *       subtype, e.g. text/x-vcard or x-world/x-vrml.
      *
      * @param string $type MIME type to check
@@ -294,8 +287,9 @@ class MIME_Type
      */
     function isExperimental($type)
     {
-        if (substr(MIME_Type::getMedia($type), 0, 2) == 'x-' ||
-            substr(MIME_Type::getSubType($type), 0, 2) == 'x-') {
+        if (substr(MIME_Type::getMedia($type), 0, 2) == 'x-'
+            || substr(MIME_Type::getSubType($type), 0, 2) == 'x-'
+        ) {
             return true;
         }
         return false;
@@ -305,7 +299,7 @@ class MIME_Type
     /**
      * Is this a vendor MIME type?
      *
-     * @note Vendor types are denoted with a leading 'vnd. in the subtype.
+     * Note: Vendor types are denoted with a leading 'vnd. in the subtype.
      *
      * @param string $type MIME type to check
      *
@@ -406,12 +400,6 @@ class MIME_Type
      *
      * This function may be called staticly.
      *
-     * @internal Tries to use fileinfo extension at first. If that
-     *  does not work, mime_magic is used. If this is also not available
-     *  or does not succeed, "file" command is tried to be executed with
-     *  System_Command. When that fails, too, then we use our in-built
-     *  extension-to-mimetype-mapping list.
-     *
      * @param string $file   Path to the file to get the type of
      * @param bool   $params Append MIME parameters if true
      *
@@ -419,6 +407,13 @@ class MIME_Type
      *
      * @since 1.0.0beta1
      * @static
+     *
+     * @internal Tries to use fileinfo extension at first. If that
+     *  does not work, mime_magic is used. If this is also not available
+     *  or does not succeed, "file" command is tried to be executed with
+     *  System_Command. When that fails, too, then we use our in-built
+     *  extension-to-mimetype-mapping list.
+     *
      */
     function autoDetect($file, $params = false)
     {
@@ -455,7 +450,7 @@ class MIME_Type
             );
         }
 
-        require_once 'MIME/Type/Extension.php';
+        include_once 'MIME/Type/Extension.php';
         $mte = new MIME_Type_Extension();
         return $mte->getMIMEType($file);
     }
