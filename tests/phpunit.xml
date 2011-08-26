@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpunit strict="true" colors="true"
+         bootstrap="bootstrap.php"
+>
+ <filter>
+  <whitelist>
+   <directory suffix=".php">../MIME/</directory>
+  </whitelist>
+ </filter>
+</phpunit>

@@ -5,7 +5,6 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
 
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
-chdir(dirname(__FILE__) . '/../');
 require_once 'TypeTest.php';
 require_once 'MIME_Type_ExtensionTest.php';
 
