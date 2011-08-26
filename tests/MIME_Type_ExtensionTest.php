@@ -1,10 +1,4 @@
 <?php
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "MIME_Type_ExtensionTest::main");
-}
-
-require_once 'PHPUnit/Framework.php';
-
 require_once 'MIME/Type/Extension.php';
 
 /**
@@ -20,21 +14,6 @@ class MIME_Type_ExtensionTest extends PHPUnit_Framework_TestCase
      */
     protected $mte;
 
-
-
-    /**
-     * Runs the test methods of this class.
-     *
-     * @access public
-     * @static
-     */
-    public static function main() {
-        require_once "PHPUnit/TextUI/TestRunner.php";
-
-        $suite  = new PHPUnit_Framework_TestSuite("MIME_Type_ExtensionTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
-    }
-
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
@@ -44,16 +23,6 @@ class MIME_Type_ExtensionTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->mte = new MIME_Type_Extension;
-    }
-
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     *
-     * @access protected
-     */
-    protected function tearDown()
-    {
     }
 
     public function testGetMIMEType()
@@ -82,9 +51,9 @@ class MIME_Type_ExtensionTest extends PHPUnit_Framework_TestCase
 
     public function testGetMIMETypeNoExtension()
     {
-        $this->assertType('PEAR_Error',
+        $this->assertInstanceOf('PEAR_Error',
             $this->mte->getMIMEType('file'));
-        $this->assertType('PEAR_Error',
+        $this->assertInstanceOf('PEAR_Error',
             $this->mte->getMIMEType('blubbr'));
     }
 
@@ -92,9 +61,9 @@ class MIME_Type_ExtensionTest extends PHPUnit_Framework_TestCase
 
     public function testGetMIMETypeFullPathNoExtension()
     {
-        $this->assertType('PEAR_Error',
+        $this->assertInstanceOf('PEAR_Error',
             $this->mte->getMIMEType('/path/to/file'));
-        $this->assertType('PEAR_Error',
+        $this->assertInstanceOf('PEAR_Error',
             $this->mte->getMIMEType('C:\\Programs\\blubbr'));
     }
 
@@ -102,7 +71,7 @@ class MIME_Type_ExtensionTest extends PHPUnit_Framework_TestCase
 
     public function testGetMIMETypeUnknownExtension()
     {
-        $this->assertType('PEAR_Error',
+        $this->assertInstanceOf('PEAR_Error',
             $this->mte->getMIMEType('file.ohmygodthatisnoextension'));
     }
 
@@ -120,15 +89,11 @@ class MIME_Type_ExtensionTest extends PHPUnit_Framework_TestCase
 
     public function testGetExtensionFail()
     {
-        $this->assertType('PEAR_Error', $this->mte->getExtension(null));
-        $this->assertType('PEAR_Error', $this->mte->getExtension(''));
-        $this->assertType('PEAR_Error', $this->mte->getExtension('n'));
-        $this->assertType('PEAR_Error', $this->mte->getExtension('n/n'));
+        $this->assertInstanceOf('PEAR_Error', $this->mte->getExtension(null));
+        $this->assertInstanceOf('PEAR_Error', $this->mte->getExtension(''));
+        $this->assertInstanceOf('PEAR_Error', $this->mte->getExtension('n'));
+        $this->assertInstanceOf('PEAR_Error', $this->mte->getExtension('n/n'));
     }
 
-}
-
-if (PHPUnit_MAIN_METHOD == "MIME_Type_ExtensionTest::main") {
-    MIME_Type_ExtensionTest::main();
 }
 ?>
