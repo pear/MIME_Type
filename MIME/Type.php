@@ -92,10 +92,14 @@ class MIME_Type
      *
      * @param string $type MIME type to parse
      *
-     * @return void
+     * @return boolean True if the type has been parsed, false if not
      */
     function parse($type)
     {
+        if ($type instanceof PEAR_Error) {
+            return false;
+        }
+
         $this->media      = $this->getMedia($type);
         $this->subType    = $this->getSubType($type);
         $this->parameters = array();
@@ -106,6 +110,8 @@ class MIME_Type
                 $this->parameters[$param->name] = $param;
             }
         }
+
+        return true;
     }
 
 
@@ -416,7 +422,11 @@ class MIME_Type
             $t = new MIME_Type();
             return $t->_autoDetect($file, $params);
         } else {
-            return $this->_autoDetect($file, $params);
+            $type = $this->_autoDetect($file, $params);
+            if (!$type instanceof PEAR_Error) {
+                $this->parse($type);
+            }
+            return $type;
         }
     }
 

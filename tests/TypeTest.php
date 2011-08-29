@@ -3,6 +3,13 @@ require_once 'MIME/Type.php';
 
 class MIME_TypeTest extends PHPUnit_Framework_TestCase
 {
+    public function testParseParameterPearError()
+    {
+        $mt = new MIME_Type();
+        $mt->parse(new PEAR_Error('this is an error'));
+        $this->assertEquals('', $mt->media);
+    }
+
     public function testParse()
     {
         $mt = new MIME_Type();
