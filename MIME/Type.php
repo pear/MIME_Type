@@ -408,15 +408,35 @@ class MIME_Type
      *
      * @since 1.0.0beta1
      * @static
+     */
+    function autoDetect($file, $params = false)
+    {
+        $isStatic = !(isset($this) && get_class($this) == __CLASS__);
+        if ($isStatic) {
+            $t = new MIME_Type();
+            return $t->_autoDetect($file, $params);
+        } else {
+            return $this->_autoDetect($file, $params);
+        }
+    }
+
+    /**
+     * Autodetect a file's MIME-type
+     *
+     * @param string $file   Path to the file to get the type of
+     * @param bool   $params Append MIME parameters if true
+     *
+     * @return string $file's MIME-type on success, PEAR_Error otherwise
+     *
+     * @since 1.3.0
      *
      * @internal Tries to use fileinfo extension at first. If that
      *  does not work, mime_magic is used. If this is also not available
      *  or does not succeed, "file" command is tried to be executed with
      *  System_Command. When that fails, too, then we use our in-built
      *  extension-to-mimetype-mapping list.
-     *
      */
-    function autoDetect($file, $params = false)
+    function _autoDetect($file, $params = false)
     {
         // Sanity checks
         if (!file_exists($file)) {
