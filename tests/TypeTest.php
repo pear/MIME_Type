@@ -211,6 +211,13 @@ class MIME_TypeTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('jpeg', $mt->subType);
     }
 
+    public function testAutoDetectNonexistingFile()
+    {
+        $res = MIME_Type::autoDetect('/this/file/does/not/exist');
+        $this->assertInstanceOf('PEAR_Error', $res);
+        $this->assertContains('doesn\'t exist', $res->getMessage());
+    }
+
     public function testComments()
     {
         $type = new MIME_Type('(UTF-8 Plain Text) text / plain ; charset = utf-8');
