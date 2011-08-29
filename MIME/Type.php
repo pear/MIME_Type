@@ -178,20 +178,20 @@ class MIME_Type
         }
 
         $inquote   = false;
-        $quoting   = false;
+        $escaped   = false;
         $incomment = 0;
         $newstring = '';
 
         for ($n = 0; $n < strlen($string); $n++) {
-            if ($quoting) {
+            if ($escaped) {
                 if ($incomment == 0) {
                     $newstring .= $string[$n];
                 } else if ($comment !== null) {
                     $comment .= $string[$n];
                 }
-                $quoting = false;
+                $escaped = false;
             } else if ($string[$n] == '\\') {
-                $quoting = true;
+                $escaped = true;
             } else if (!$inquote && $incomment > 0 && $string[$n] == ')') {
                 $incomment--;
                 if ($incomment == 0 && $comment !== null) {
