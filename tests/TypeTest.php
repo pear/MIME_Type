@@ -168,24 +168,28 @@ class MIME_TypeTest extends PHPUnit_Framework_TestCase
         $this->assertFalse(MIME_Type::wildcardMatch('image/foo', 'image/png'));
     }
 
-    /**
-     * @todo Implement testAddParameter().
-     */
-    public function testAddParameter() {
-        // Remove the following line when you implement this test.
-        $this->markTestIncomplete(
-          "This test has not been implemented yet."
-        );
+    public function testAddParameter()
+    {
+        $mt = new MIME_Type('image/png; foo=bar');
+        $mt->addParameter('baz', 'val', 'this is a comment');
+        $res = $mt->get();
+        $this->assertContains('foo=', $res);
+        $this->assertContains('bar', $res);
+
+        $this->assertContains('baz=', $res);
+        $this->assertContains('val', $res);
+        $this->assertContains('(this is a comment)', $res);
     }
 
-    /**
-     * @todo Implement testRemoveParameter().
-     */
-    public function testRemoveParameter() {
-        // Remove the following line when you implement this test.
-        $this->markTestIncomplete(
-          "This test has not been implemented yet."
-        );
+    public function testRemoveParameter()
+    {
+        $mt = new MIME_Type('image/png; foo=bar');
+        $mt->addParameter('baz', 'val', 'this is a comment');
+        $mt->removeParameter('foo');
+        $res = $mt->get();
+        $this->assertNotContains('foo=', $res);
+        $this->assertNotContains('bar', $res);
+        $this->assertContains('baz=', $res);
     }
 
     public function testAutoDetect()
