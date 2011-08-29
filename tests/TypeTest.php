@@ -225,6 +225,53 @@ class MIME_TypeTest extends PHPUnit_Framework_TestCase
         $this->assertContains('doesn\'t exist', $res->getMessage());
     }
 
+    public function testAutoDetectMimeContentType()
+    {
+        $mt = new MIME_Type();
+        $mt->useFinfo = false;
+        $mt->useFileCmd = false;
+        $mt->useExtension = false;
+        $type = $mt->autoDetect(dirname(__FILE__) . '/files/example.jpg');
+        $this->assertEquals('image', $mt->media);
+        $this->assertEquals('jpeg', $mt->subType);
+    }
+
+    public function testAutoDetectFileCommand()
+    {
+        $mt = new MIME_Type();
+        $mt->useFinfo = false;
+        $mt->useMimeContentType = false;
+        $mt->useExtension = false;
+        $type = $mt->autoDetect(dirname(__FILE__) . '/files/example.jpg');
+        $this->assertEquals('image', $mt->media);
+        $this->assertEquals('jpeg', $mt->subType);
+    }
+
+    public function testAutoDetectExtension()
+    {
+        $mt = new MIME_Type();
+        $mt->useFinfo = false;
+        $mt->useMimeContentType = false;
+        $mt->useFileCmd = false;
+        $type = $mt->autoDetect(dirname(__FILE__) . '/files/example.jpg');
+        $this->assertEquals('image', $mt->media);
+        $this->assertEquals('jpeg', $mt->subType);
+    }
+
+    public function testAutoDetectError()
+    {
+        $mt = new MIME_Type();
+        $mt->useFinfo = false;
+        $mt->useMimeContentType = false;
+        $mt->useFileCmd = false;
+        $mt->useExtension = false;
+
+        $res = $mt->autoDetect(dirname(__FILE__) . '/files/example.jpg');
+        $this->assertInstanceOf('PEAR_Error', $res);
+        $this->assertEquals('', $mt->media);
+        $this->assertEquals('', $mt->subType);
+    }
+
     public function testComments()
     {
         $type = new MIME_Type('(UTF-8 Plain Text) text / plain ; charset = utf-8');

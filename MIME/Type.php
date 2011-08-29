@@ -67,6 +67,34 @@ class MIME_Type
         'message'
     );
 
+    /**
+     * If the finfo functions shall be used when they are available
+     *
+     * @var boolean
+     */
+    var $useFinfo = true;
+
+    /**
+     * If mime_content_type shall be used when available
+     *
+     * @var boolean
+     */
+    var $useMimeContentType = true;
+
+    /**
+     * If the file command shall be used when available
+     *
+     * @var boolean
+     */
+    var $useFileCmd = true;
+
+    /**
+     * If the in-built file extension detection shall be used
+     *
+     * @var boolean
+     */
+    var $useExtension = true;
+
 
     /**
      * Constructor.
@@ -457,7 +485,7 @@ class MIME_Type
             return PEAR::raiseError("File \"$file\" is not readable");
         }
 
-        if (function_exists('finfo_file')) {
+        if ($this->useFinfo && function_exists('finfo_file')) {
             $finfo = finfo_open(FILEINFO_MIME);
             $type  = finfo_file($finfo, $file);
             finfo_close($finfo);
@@ -466,24 +494,30 @@ class MIME_Type
             }
         }
 
-        if (function_exists('mime_content_type')) {
+        if ($this->useMimeContentType && function_exists('mime_content_type')) {
             $type = mime_content_type($file);
             if ($type !== false && $type !== '') {
                 return MIME_Type::_handleDetection($type, $params);
             }
         }
 
-        @include_once 'System/Command.php';
-        if (class_exists('System_Command')) {
-            return MIME_Type::_handleDetection(
-                MIME_Type::_fileAutoDetect($file),
-                $params
-            );
+        if ($this->useFileCmd) {
+            @include_once 'System/Command.php';
+            if (class_exists('System_Command')) {
+                return MIME_Type::_handleDetection(
+                    MIME_Type::_fileAutoDetect($file),
+                    $params
+                );
+            }
         }
 
-        include_once 'MIME/Type/Extension.php';
-        $mte = new MIME_Type_Extension();
-        return $mte->getMIMEType($file);
+        if ($this->useExtension) {
+            include_once 'MIME/Type/Extension.php';
+            $mte = new MIME_Type_Extension();
+            return $mte->getMIMEType($file);
+        }
+
+        return PEAR::raiseError("Sorry, couldn't determine file type.");
     }
 
 
