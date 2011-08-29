@@ -68,16 +68,44 @@ class MIME_TypeTest extends PHPUnit_Framework_TestCase
         );
     }
 
-    public function testStripComments() {
+    public function testStripComments()
+    {
         $this->assertEquals('def', MIME_Type::stripComments('(abc)def(ghi)', $null));
         $this->assertEquals('def', MIME_Type::stripComments('(abc)def', $null));
         $this->assertEquals('def', MIME_Type::stripComments('def(ghi)', $null));
-        $this->assertEquals('def', MIME_Type::stripComments('(\)abc)def(\))', $null));
+    }
+
+    public function testStripCommentsEscaped()
+    {
+        $comment = '';
+        $this->assertEquals(
+            'def', MIME_Type::stripComments('(\)abc)def(\))', $comment)
+        );
+        $this->assertEquals(')abc )', $comment);
+    }
+
+    public function testStripCommentsEscapedString()
+    {
+        $comment = false;
+        $this->assertEquals(
+            'foo', MIME_Type::stripComments('\\foo(abc)', $comment)
+        );
+        $this->assertEquals('abc', $comment);
+    }
+
+    public function testStripCommentsQuoted()
+    {
         $this->assertEquals('def', MIME_Type::stripComments('(a"bc)def")def', $null));
         $this->assertEquals('(abc)def', MIME_Type::stripComments('"(abc)def"', $null));
+    }
 
+    public function testStripCommentsParameterComment()
+    {
         $comment = '';
-        $this->assertEquals('def', MIME_Type::stripComments('(abc)def(ghi)', $comment));
+        $this->assertEquals(
+            'def',
+            MIME_Type::stripComments('(abc)def(ghi)', $comment)
+        );
         $this->assertEquals('abc ghi', $comment);
     }
 

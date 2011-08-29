@@ -167,6 +167,7 @@ class MIME_Type
      *
      * @param string $string   String to strip comments from
      * @param string &$comment Comment is stored in there.
+     *                         Do not set it to NULL if you want the comment.
      *
      * @return string   String without comments
      * @static
