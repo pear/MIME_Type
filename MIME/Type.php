@@ -95,6 +95,14 @@ class MIME_Type
      */
     var $useExtension = true;
 
+    /**
+     * Path to the "magic" file database.
+     * If NULL, the default one is used
+     *
+     * @var string
+     */
+    var $magicFile = null;
+
 
     /**
      * Constructor.
@@ -486,11 +494,13 @@ class MIME_Type
         }
 
         if ($this->useFinfo && function_exists('finfo_file')) {
-            $finfo = finfo_open(FILEINFO_MIME);
-            $type  = finfo_file($finfo, $file);
-            finfo_close($finfo);
-            if ($type !== false && $type !== '') {
-                return MIME_Type::_handleDetection($type, $params);
+            $finfo = finfo_open(FILEINFO_MIME, $this->magicFile);
+            if ($finfo) {
+                $type  = finfo_file($finfo, $file);
+                finfo_close($finfo);
+                if ($type !== false && $type !== '') {
+                    return MIME_Type::_handleDetection($type, $params);
+                }
             }
         }
 
@@ -565,7 +575,8 @@ class MIME_Type
      */
     function _fileAutoDetect($file)
     {
-        $cmd = new System_Command();
+        $cmd   = new System_Command();
+        $magic = '';
 
         // Make sure we have the 'file' command.
         $fileCmd = PEAR::getStaticProperty('MIME_Type', 'fileCmd');
@@ -573,8 +584,11 @@ class MIME_Type
             unset($cmd);
             return PEAR::raiseError("Can't find file command \"{$fileCmd}\"");
         }
+        if (strlen($this->magicFile)) {
+            $magic = '--magic-file ' . escapeshellarg($this->magicFile);
+        }
 
-        $cmd->pushCommand($fileCmd, "-bi " . escapeshellarg($file));
+        $cmd->pushCommand($fileCmd, $magic, "-bi " . escapeshellarg($file));
         $res = $cmd->execute();
         unset($cmd);
 

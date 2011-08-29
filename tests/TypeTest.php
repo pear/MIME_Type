@@ -225,6 +225,44 @@ class MIME_TypeTest extends PHPUnit_Framework_TestCase
         $this->assertContains('doesn\'t exist', $res->getMessage());
     }
 
+    public function testAutoDetectFinfo()
+    {
+        $mt = new MIME_Type();
+        $mt->useMimeContentType = false;
+        $mt->useFileCmd = false;
+        $mt->useExtension = false;
+        $type = $mt->autoDetect(dirname(__FILE__) . '/files/example.jpg');
+        $this->assertNotInstanceOf('PEAR_Error', $type);
+        $this->assertEquals('image', $mt->media);
+        $this->assertEquals('jpeg', $mt->subType);
+    }
+
+    public function testAutoDetectFinfoMagic()
+    {
+        $mt = new MIME_Type();
+        $mt->magicFile = dirname(__FILE__) . '/TypeTest.magic';
+        $mt->useMimeContentType = false;
+        $mt->useFileCmd = false;
+        $mt->useExtension = false;
+
+        $type = $mt->autoDetect(dirname(__FILE__) . '/files/example.php');
+        $this->assertNotInstanceOf('PEAR_Error', $type);
+        $this->assertEquals('text', $mt->media);
+        $this->assertEquals('x-unittest', $mt->subType);
+    }
+
+    public function testAutoDetectFinfoNonExistingMagic()
+    {
+        $mt = new MIME_Type();
+        $mt->magicFile = dirname(__FILE__) . '/magicdoesnotexist';
+        $mt->useMimeContentType = false;
+        $mt->useFileCmd = false;
+        $mt->useExtension = false;
+
+        $type = $mt->autoDetect(dirname(__FILE__) . '/files/example.php');
+        $this->assertInstanceOf('PEAR_Error', $type);
+    }
+
     public function testAutoDetectMimeContentType()
     {
         $mt = new MIME_Type();
@@ -245,6 +283,18 @@ class MIME_TypeTest extends PHPUnit_Framework_TestCase
         $type = $mt->autoDetect(dirname(__FILE__) . '/files/example.jpg');
         $this->assertEquals('image', $mt->media);
         $this->assertEquals('jpeg', $mt->subType);
+    }
+
+    public function testAutoDetectFileCommandMagic()
+    {
+        $mt = new MIME_Type();
+        $mt->magicFile = dirname(__FILE__) . '/TypeTest.magic';
+        $mt->useFinfo = false;
+        $mt->useMimeContentType = false;
+        $mt->useExtension = false;
+        $type = $mt->autoDetect(dirname(__FILE__) . '/files/example.php');
+        $this->assertEquals('text', $mt->media);
+        $this->assertEquals('x-unittest', $mt->subType);
     }
 
     public function testAutoDetectExtension()
