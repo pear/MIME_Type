@@ -528,6 +528,7 @@ class MIME_Type
      * @param bool   $params Append MIME parameters if true
      *
      * @return string $file's MIME-type on success, PEAR_Error otherwise
+     * @static
      */
     function _handleDetection($type, $params)
     {

@@ -326,5 +326,21 @@ class MIME_TypeTest extends PHPUnit_Framework_TestCase
 
     }
 
+
+    public function test_handleDetectionParamPearError()
+    {
+        $err = new PEAR_Error('test');
+        $ret = MIME_Type::_handleDetection($err, false);
+        $this->assertInstanceOf('PEAR_Error', $ret);
+    }
+
+    public function test_handleDetectionEmptyType()
+    {
+        $ret = MIME_Type::_handleDetection('', false);
+        $this->assertInstanceOf('PEAR_Error', $ret);
+
+        $ret = MIME_Type::_handleDetection(false, false);
+        $this->assertInstanceOf('PEAR_Error', $ret);
+    }
 }
 ?>
