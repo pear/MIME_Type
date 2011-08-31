@@ -514,10 +514,10 @@ class MIME_Type
         if ($this->useFileCmd) {
             @include_once 'System/Command.php';
             if (class_exists('System_Command')) {
-                return MIME_Type::_handleDetection(
-                    MIME_Type::_fileAutoDetect($file),
-                    $params
-                );
+                $type = MIME_Type::_fileAutoDetect($file);
+                if ($type !== false && $type !== '') {
+                    return MIME_Type::_handleDetection($type, $params);
+                }
             }
         }
 
