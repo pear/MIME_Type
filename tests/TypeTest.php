@@ -322,6 +322,17 @@ class MIME_TypeTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('', $mt->subType);
     }
 
+    public function test_fileAutoDetectNoFileCommand()
+    {
+        $cmd = &PEAR::getStaticProperty('MIME_Type', 'fileCmd');
+        $cmd = 'thiscommanddoesnotexist';
+
+        require_once 'System/Command.php';
+        $res = MIME_Type::_fileAutoDetect(dirname(__FILE__) . '/files/example.jpg');
+        $this->assertInstanceOf('PEAR_Error', $res);
+        $this->assertContains('thiscommanddoesnotexist', $res->getMessage());
+    }
+
     public function testComments()
     {
         $type = new MIME_Type('(UTF-8 Plain Text) text / plain ; charset = utf-8');
