@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.9.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.9.1" version="2.0"
+ xmlns="http://pear.php.net/dtd/package-2.0"
+ xmlns:tasks="http://pear.php.net/dtd/tasks-1.0"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd"
+>
  <name>MIME_Type</name>
  <channel>pear.php.net</channel>
  <summary>Utility class for dealing with MIME types</summary>
@@ -10,6 +15,7 @@
 * Most functions can be called statically.
 * Autodetect a file&apos;s mime-type, either with fileinfo extension,
   mime_magic extension, the &apos;file&apos; command or an in-built mapping list</description>
+
  <lead>
   <name>Ian Eure</name>
   <user>ieure</user>
@@ -22,6 +28,7 @@
   <email>cweiske@php.net</email>
   <active>yes</active>
  </developer>
+
  <date>2010-10-25</date>
  <time>23:16:29</time>
  <version>
@@ -32,11 +39,14 @@
   <release>stable</release>
   <api>stable</api>
  </stability>
+
  <license>PHP License 3.0</license>
+
  <notes>
 Automatically built QA release
 Req #13646 Default to Mime Type based on Extension - cweiske
  </notes>
+
  <contents>
   <dir baseinstalldir="/" name="/">
    <file baseinstalldir="/" name="docs/examples/example.php" role="doc" />
@@ -55,6 +65,7 @@ Req #13646 Default to Mime Type based on Extension - cweiske
    <file baseinstalldir="/" name="tests/files/example.txt.gz" role="test" />
   </dir>
  </contents>
+
  <dependencies>
   <required>
    <php>
@@ -76,7 +87,9 @@ Req #13646 Default to Mime Type based on Extension - cweiske
    </package>
   </optional>
  </dependencies>
+
  <phprelease />
+
  <changelog>
   <release>
    <version>
@@ -94,6 +107,7 @@ Initial PEARification
 * Split most functionality off from MIME_ContentType
    </notes>
   </release>
+
   <release>
    <version>
     <release>1.0.0beta2</release>
@@ -109,6 +123,7 @@ Initial PEARification
 * Make changes as requested during the proposal/vote process.
    </notes>
   </release>
+
   <release>
    <version>
     <release>1.0.0beta3</release>
@@ -125,6 +140,7 @@ Initial PEARification
 * Quote filenames in _fileAutoDetect() (Fixes #2078)
    </notes>
   </release>
+
   <release>
    <version>
     <release>1.0.0</release>
@@ -140,6 +156,7 @@ Initial PEARification
 - No changes since 1.0.0beta3.
    </notes>
   </release>
+
   <release>
    <version>
     <release>1.1.0</release>
@@ -159,6 +176,7 @@ Initial PEARification
 - Adding unit tests
    </notes>
   </release>
+
   <release>
    <version>
     <release>1.1.1</release>
@@ -174,6 +192,7 @@ Initial PEARification
 - Fix #14150, notices due to use of =&amp; new.
    </notes>
   </release>
+
   <release>
    <version>
     <release>1.1.2</release>
@@ -190,6 +209,7 @@ Initial PEARification
   in PHP4.
    </notes>
   </release>
+
   <release>
    <version>
     <release>1.1.3</release>
@@ -207,6 +227,7 @@ Initial PEARification
 - more tests
    </notes>
   </release>
+
   <release>
    <version>
     <release>1.2.0</release>
@@ -222,6 +243,7 @@ Initial PEARification
 * Extension-to-MIMEType mapper by Christian Schmidt, bug #13646
    </notes>
   </release>
+
   <release>
    <version>
     <release>1.2.1</release>
@@ -238,5 +260,6 @@ Automatically built QA release
 Req #13646 Default to Mime Type based on Extension - cweiske
    </notes>
   </release>
+
  </changelog>
 </package>
