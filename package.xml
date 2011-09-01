@@ -49,20 +49,32 @@ Req #13646 Default to Mime Type based on Extension - cweiske
 
  <contents>
   <dir baseinstalldir="/" name="/">
-   <file baseinstalldir="/" name="docs/examples/example.php" role="doc" />
-   <file baseinstalldir="/" name="MIME/Type.php" role="php" />
-   <file baseinstalldir="/" name="MIME/Type/Extension.php" role="php" />
-   <file baseinstalldir="/" name="MIME/Type/Parameter.php" role="php" />
-   <file baseinstalldir="/" name="tests/AllTests.php" role="test" />
-   <file baseinstalldir="/" name="tests/MIME_Type_ExtensionTest.php" role="test" />
-   <file baseinstalldir="/" name="tests/TypeTest.php" role="test" />
-   <file baseinstalldir="/" name="tests/files/example.bmp" role="test" />
-   <file baseinstalldir="/" name="tests/files/example.gif" role="test" />
-   <file baseinstalldir="/" name="tests/files/example.jpg" role="test" />
-   <file baseinstalldir="/" name="tests/files/example.png" role="test" />
-   <file baseinstalldir="/" name="tests/files/example.txt" role="test" />
-   <file baseinstalldir="/" name="tests/files/example.txt.bz2" role="test" />
-   <file baseinstalldir="/" name="tests/files/example.txt.gz" role="test" />
+   <dir name="docs">
+   <file name="examples/example.php" role="doc" />
+   </dir>
+   <dir name="MIME">
+    <file name="Type.php" role="php" />
+    <file name="Type/Extension.php" role="php" />
+    <file name="Type/Parameter.php" role="php" />
+   </dir>
+   <dir name="tests">
+    <file name="AllTests.php" role="test" />
+    <file name="bootstrap.php" role="test" />
+    <file name="MIME_Type_ExtensionTest.php" role="test" />
+    <file name="MIME_Type_ParameterTest.php" role="test" />
+    <file name="phpunit.xml" role="test" />
+    <file name="TypeTest.php" role="test" />
+    <file name="TypeTest.magic" role="test" />
+    <dir name="files">
+     <file name="example.bmp" role="test" />
+     <file name="example.gif" role="test" />
+     <file name="example.jpg" role="test" />
+     <file name="example.png" role="test" />
+     <file name="example.txt" role="test" />
+     <file name="example.txt.bz2" role="test" />
+     <file name="example.txt.gz" role="test" />
+    </dir>
+   </dir>
   </dir>
  </contents>
 
