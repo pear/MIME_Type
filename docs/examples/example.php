@@ -1,7 +1,6 @@
 <?php
 
-ini_set('error_reporting', E_ALL);
-require 'MIME/Type.php';
+require_once 'MIME/Type.php';
 
 $type = 'application/x-test-app; foo="bar" (First argument); bar=baz (Second argument)';
 $type2 = 'application/vnd.pear.test-type';
