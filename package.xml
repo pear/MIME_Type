@@ -46,7 +46,6 @@
 - Implement request #17969: Configurable magic database file
 - Fix bug #17969: Fall back to next method after file command error
 - Single detection methods may be disabled
-
  </notes>
 
  <contents>
@@ -274,6 +273,24 @@ Initial PEARification
    <notes>
 Automatically built QA release
 Req #13646 Default to Mime Type based on Extension - cweiske
+   </notes>
+  </release>
+
+  <release>
+   <version>
+    <release>1.3.0</release>
+    <api>1.3.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2011-09-04</date>
+   <license>PHP License 3.0</license>
+   <notes>
+- Implement request #17969: Configurable magic database file
+- Fix bug #17969: Fall back to next method after file command error
+- Single detection methods may be disabled
    </notes>
   </release>
 
