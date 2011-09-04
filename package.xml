@@ -72,6 +72,7 @@
      <file role="test" name="example.bmp" />
      <file role="test" name="example.gif" />
      <file role="test" name="example.jpg" />
+     <file role="test" name="example.php" />
      <file role="test" name="example.png" />
      <file role="test" name="example.txt" />
      <file role="test" name="example.txt.bz2" />
