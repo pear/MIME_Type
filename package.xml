@@ -29,11 +29,11 @@
   <active>yes</active>
  </developer>
 
- <date>2010-10-25</date>
- <time>23:16:29</time>
+ <date>2011-09-04</date>
+ <time>10:30:23</time>
  <version>
-  <release>1.2.1</release>
-  <api>1.2.0</api>
+  <release>1.3.0</release>
+  <api>1.3.0</api>
  </version>
  <stability>
   <release>stable</release>
@@ -43,36 +43,39 @@
  <license>PHP License 3.0</license>
 
  <notes>
-Automatically built QA release
-Req #13646 Default to Mime Type based on Extension - cweiske
+- Implement request #17969: Configurable magic database file
+- Fix bug #17969: Fall back to next method after file command error
+- Single detection methods may be disabled
+
  </notes>
 
  <contents>
   <dir baseinstalldir="/" name="/">
    <dir name="docs">
-   <file name="examples/example.php" role="doc" />
+    <file role="doc" name="examples/example.php" />
+    <file role="doc" name="examples/custom-magic.php" />
+    <file role="doc" name="examples/custom-magic.magic" />
    </dir>
    <dir name="MIME">
-    <file name="Type.php" role="php" />
-    <file name="Type/Extension.php" role="php" />
-    <file name="Type/Parameter.php" role="php" />
+    <file role="php" name="Type.php" />
+    <file role="php" name="Type/Extension.php" />
+    <file role="php" name="Type/Parameter.php" />
    </dir>
    <dir name="tests">
-    <file name="AllTests.php" role="test" />
-    <file name="bootstrap.php" role="test" />
-    <file name="MIME_Type_ExtensionTest.php" role="test" />
-    <file name="MIME_Type_ParameterTest.php" role="test" />
-    <file name="phpunit.xml" role="test" />
-    <file name="TypeTest.php" role="test" />
-    <file name="TypeTest.magic" role="test" />
+    <file role="test" name="bootstrap.php" />
+    <file role="test" name="MIME_Type_ExtensionTest.php" />
+    <file role="test" name="MIME_Type_ParameterTest.php" />
+    <file role="test" name="phpunit.xml" />
+    <file role="test" name="TypeTest.php" />
+    <file role="test" name="TypeTest.magic" />
     <dir name="files">
-     <file name="example.bmp" role="test" />
-     <file name="example.gif" role="test" />
-     <file name="example.jpg" role="test" />
-     <file name="example.png" role="test" />
-     <file name="example.txt" role="test" />
-     <file name="example.txt.bz2" role="test" />
-     <file name="example.txt.gz" role="test" />
+     <file role="test" name="example.bmp" />
+     <file role="test" name="example.gif" />
+     <file role="test" name="example.jpg" />
+     <file role="test" name="example.png" />
+     <file role="test" name="example.txt" />
+     <file role="test" name="example.txt.bz2" />
+     <file role="test" name="example.txt.gz" />
     </dir>
    </dir>
   </dir>
