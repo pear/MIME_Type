@@ -60,6 +60,7 @@
    </dir>
    <dir name="tests">
     <file role="test" name="bootstrap.php" />
+    <file role="test" name="AllTests.php" />
     <file role="test" name="MIME_Type_ExtensionTest.php" />
     <file role="test" name="MIME_Type_ParameterTest.php" />
     <file role="test" name="phpunit.xml" />
