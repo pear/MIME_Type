@@ -29,10 +29,10 @@
   <active>yes</active>
  </developer>
 
- <date>2011-09-05</date>
- <time>21:55:23</time>
+ <date>2012-02-25</date>
+
  <version>
-  <release>1.3.0</release>
+  <release>1.3.1</release>
   <api>1.3.0</api>
  </version>
  <stability>
@@ -40,12 +40,10 @@
   <api>stable</api>
  </stability>
 
- <license>PHP License 3.0</license>
+ <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
 
  <notes>
-- Implement request #17969: Configurable magic database file
-- Fix bug #17969: Fall back to next method after file command error
-- Single detection methods may be disabled
+- Change license from PHP to LGPL
  </notes>
 
  <contents>
@@ -291,6 +289,22 @@ Req #13646 Default to Mime Type based on Extension - cweiske
 - Implement request #17969: Configurable magic database file
 - Fix bug #17969: Fall back to next method after file command error
 - Single detection methods may be disabled
+   </notes>
+  </release>
+
+  <release>
+   <version>
+    <release>1.3.1</release>
+    <api>1.3.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2012-02-25</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>
+- Change license from PHP to LGPL
    </notes>
   </release>
 

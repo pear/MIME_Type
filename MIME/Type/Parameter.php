@@ -8,7 +8,7 @@
  * @category File
  * @package  MIME_Type
  * @author   Ian Eure <ieure@php.net>
- * @license  http://www.php.net/license/3_0.txt PHP License 3.0
+ * @license  http://www.gnu.org/copyleft/lesser.html LGPL
  * @link     http://pear.php.net/package/MIME_Type
  */
 
@@ -18,7 +18,7 @@
  * @category File
  * @package  MIME_Type
  * @author   Ian Eure <ieure@php.net>
- * @license  http://www.php.net/license/3_0.txt PHP License 3.0
+ * @license  http://www.gnu.org/copyleft/lesser.html LGPL
  * @version  Release: @version@
  * @link     http://pear.php.net/package/MIME_Type
  */
