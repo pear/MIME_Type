@@ -251,6 +251,9 @@ class MIME_TypeTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('x-unittest', $mt->subType);
     }
 
+    /**
+     * @expectedException PHPUnit_Framework_Error
+     */
     public function testAutoDetectFinfoNonExistingMagic()
     {
         $mt = new MIME_Type();
