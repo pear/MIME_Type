@@ -9,6 +9,9 @@ class MIME_Type_AllTests
 {
     public static function main()
     {
+        //PEAR's phpunit call did not load it automatically
+        require_once __DIR__ . '/bootstrap.php';
+
         PHPUnit_TextUI_TestRunner::run(self::suite());
     }
 
