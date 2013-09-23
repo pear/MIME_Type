@@ -37,7 +37,10 @@ class MIME_Type_ExtensionTest extends PHPUnit_Framework_TestCase
             $this->mte->getMIMEType('a.odt'));
     }
 
-
+    public function testGetMIMETypeUppercase()
+    {
+        $this->assertEquals('text/plain', $this->mte->getMIMEType('a.TXT'));
+    }
 
     public function testGetMIMETypeFullPath()
     {
