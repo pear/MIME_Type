@@ -1,0 +1,36 @@
+{
+    "authors": [
+        {
+            "email": "ieure@php.net",
+            "name": "Ian Eure",
+            "role": "Lead"
+        },
+        {
+            "email": "cweiske@php.net",
+            "name": "Christian Weiske",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "MIME_Type": "./"
+        }
+    },
+    "description": "Detect the MIME Type of a file",
+    "include-path": [
+        "./"
+    ],
+    "license": "LGPL",
+    "name": "pear/mime_type",
+    "support": {
+        "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=MIME_Type",
+        "source": "https://github.com/pear/MIME_Type"
+    },
+    "type": "library",
+    "require": {
+        "pear/pear_exception": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}
