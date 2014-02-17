@@ -13,7 +13,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "MIME_Type": "./"
+            "MIME": "./"
         }
     },
     "description": "Detect the MIME Type of a file",
@@ -28,9 +28,13 @@
     },
     "type": "library",
     "require": {
-        "pear/pear_exception": "*"
+        "pear/pear_exception": "*",
+        "pear/pear": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
+    },
+    "suggest": {
+        "pear/system_command": "Install optionally via your project's composer.json"
     }
 }
