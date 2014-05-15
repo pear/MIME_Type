@@ -35,7 +35,7 @@
         }
     ],
     "require": {
-        "pear-pear.php.net/pear": "~1.9"
+        "pear-pear.php.net/PEAR": "~1.9"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
