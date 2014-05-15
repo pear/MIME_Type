@@ -22,6 +22,7 @@
     ],
     "license": "LGPL",
     "name": "pear/mime_type",
+    "homepage": "http://pear.php.net/package/MIME_Type",
     "support": {
         "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=MIME_Type",
         "source": "https://github.com/pear/MIME_Type"
