@@ -28,9 +28,14 @@
         "source": "https://github.com/pear/MIME_Type"
     },
     "type": "library",
+    "repositories": [
+        {
+            "type": "pear",
+            "url": "pear.php.net"
+        }
+    },
     "require": {
-        "pear/pear_exception": "*",
-        "pear/pear": "*"
+        "pear-pear.php.net/pear": "~1.9"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
