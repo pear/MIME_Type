@@ -290,5 +290,4 @@ class MIME_Type_Extension
     }
 
 }
-
 ?>
