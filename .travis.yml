@@ -1,6 +1,7 @@
 language: php
 install:
-  - pear install package.xml
+  - pear install --alldeps package.xml
 php:
   - 5.4
-script: phpunit tests/
+  - 5.5
+script: cd tests && phpunit .
