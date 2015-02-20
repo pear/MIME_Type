@@ -1,4 +1,12 @@
 {
+    "name": "pear/mime_type",
+    "homepage": "http://pear.php.net/package/MIME_Type",
+    "description": "Detect the MIME Type of a file",
+    "license": "LGPL",
+    "support": {
+        "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=MIME_Type",
+        "source": "https://github.com/pear/MIME_Type"
+    },
     "authors": [
         {
             "email": "ieure@php.net",
@@ -16,26 +24,12 @@
             "MIME": "./"
         }
     },
-    "description": "Detect the MIME Type of a file",
     "include-path": [
         "./"
     ],
-    "license": "LGPL",
-    "name": "pear/mime_type",
-    "homepage": "http://pear.php.net/package/MIME_Type",
-    "support": {
-        "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=MIME_Type",
-        "source": "https://github.com/pear/MIME_Type"
-    },
     "type": "library",
-    "repositories": [
-        {
-            "type": "pear",
-            "url": "pear.php.net"
-        }
-    ],
     "require": {
-        "pear-pear.php.net/PEAR": ">=1.9.0"
+        "pear/pear-core-minimal": "^1.9.5"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
