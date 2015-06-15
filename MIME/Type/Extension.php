@@ -223,6 +223,8 @@ class MIME_Type_Extension
         'wml'       => 'text/vnd.wap.wml',
         'wmls'      => 'text/vnd.wap.wmlscript',
         'etx'       => 'text/x-setext',
+        'm2t'       => 'video/mp2t',
+        'm2ts'      => 'video/mp2t',
         'mp4'       => 'video/mp4',
         'mpeg'      => 'video/mpeg',
         'mpg'       => 'video/mpeg',
