@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<phpunit strict="true" colors="true"
+<phpunit colors="true"
          bootstrap="bootstrap.php"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutTestSize="true"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+         checkForUnintentionallyCoveredCode="true"
 >
  <filter>
   <whitelist>
