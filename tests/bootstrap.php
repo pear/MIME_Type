@@ -1,6 +1,4 @@
 <?php
-//PEAR is not E_STRICT compatible
-error_reporting(error_reporting() & ~E_STRICT);
-
+error_reporting(E_ALL | E_DEPRECATED | E_STRICT);
 chdir(dirname(__FILE__) . '/../');
 ?>

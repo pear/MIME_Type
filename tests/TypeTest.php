@@ -331,7 +331,11 @@ class MIME_TypeTest extends PHPUnit_Framework_TestCase
         $cmd = 'thiscommanddoesnotexist';
 
         require_once 'System/Command.php';
-        $res = MIME_Type::_fileAutoDetect(dirname(__FILE__) . '/files/example.jpg');
+        $method = new ReflectionMethod('MIME_Type', '_fileAutoDetect');
+        $method->setAccessible(true);
+        $res = $method->invoke(
+            new MIME_Type(), dirname(__FILE__) . '/files/example.jpg'
+        );
         $this->assertInstanceOf('PEAR_Error', $res);
         $this->assertContains('thiscommanddoesnotexist', $res->getMessage());
     }
@@ -393,18 +397,43 @@ class MIME_TypeTest extends PHPUnit_Framework_TestCase
 
     public function test_handleDetectionParamPearError()
     {
+        $method = new ReflectionMethod('MIME_Type', '_handleDetection');
+        $method->setAccessible(true);
+
         $err = new PEAR_Error('test');
-        $ret = MIME_Type::_handleDetection($err, false);
+        $ret = $method->invoke(null, $err, false);
         $this->assertInstanceOf('PEAR_Error', $ret);
     }
 
     public function test_handleDetectionEmptyType()
     {
-        $ret = MIME_Type::_handleDetection('', false);
+        $method = new ReflectionMethod('MIME_Type', '_handleDetection');
+        $method->setAccessible(true);
+
+        $ret = $method->invoke(null, '', false);
         $this->assertInstanceOf('PEAR_Error', $ret);
 
-        $ret = MIME_Type::_handleDetection(false, false);
+        $ret = $method->invoke(null, false, false);
         $this->assertInstanceOf('PEAR_Error', $ret);
+    }
+
+    /**
+     * @expectedException PHPUnit_Framework_Error
+     * @expectedExceptionMessage Call to undefined method MIME_TYPE::doesNotExist()
+     */
+    public function test__callUnknownMethod()
+    {
+        $type = new MIME_Type();
+        $type->doesNotExist();
+    }
+
+    /**
+     * @expectedException PHPUnit_Framework_Error
+     * @expectedExceptionMessage Call to undefined method MIME_TYPE::doesNotExist()
+     */
+    public function test__callStaticUnknownMethod()
+    {
+        MIME_Type::doesNotExist();
     }
 }
 ?>
