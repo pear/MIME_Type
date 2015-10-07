@@ -122,6 +122,14 @@ class MIME_Type
         }
     }
 
+    /**
+     * Make "autoDetect" method available.
+     *
+     * @param string $method    Method to call. Only "autoDetect" supported.
+     * @param array  $arguments Function parameters.
+     *
+     * @return string MIME type
+     */
     public function __call($method, $arguments)
     {
         if ($method !== 'autoDetect') {
@@ -135,6 +143,14 @@ class MIME_Type
         return $type;
     }
 
+    /**
+     * Make "autoDetect" method available statically.
+     *
+     * @param string $method    Method to call. Only "autoDetect" supported.
+     * @param array  $arguments Function parameters.
+     *
+     * @return string MIME type
+     */
     public static function __callStatic($method, $arguments)
     {
         if ($method !== 'autoDetect') {
@@ -229,9 +245,9 @@ class MIME_Type
     /**
      * Removes comments from a media type, subtype or parameter.
      *
-     * @param string $string   String to strip comments from
-     * @param string &$comment Comment is stored in there.
-     *                         Do not set it to NULL if you want the comment.
+     * @param string $string  String to strip comments from
+     * @param string $comment Comment is stored in there.
+     *                        Do not set it to NULL if you want the comment.
      *
      * @return string String without comments
      */
