@@ -82,8 +82,8 @@ class MIME_Type_ExtensionTest extends PHPUnit_Framework_TestCase
 
     public function testGetExtension()
     {
-        $this->assertEquals('txt',
-            $this->mte->getExtension('text/plain'));
+        $this->assertEquals('atom',
+            $this->mte->getExtension('application/atom+xml'));
         $this->assertEquals('csv',
             $this->mte->getExtension('text/csv'));
     }
