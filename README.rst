@@ -61,3 +61,19 @@ Unit test status
 
   .. image:: https://travis-ci.org/pear/MIME_Type.svg?branch=master
      :target: https://travis-ci.org/pear/MIME_Type
+
+
+Development
+===========
+
+Updating extension mapping
+--------------------------
+The built-in extension-to-type mapping list can be updated from
+apache's source code repository::
+
+    $ ./scripts/update-mimelist.php
+    ...
+    785 new, 28 updated, 168 same, 5 own, 986 total
+    Code updated
+
+The file ``MIME/Type/Extension.php`` will be changed now.

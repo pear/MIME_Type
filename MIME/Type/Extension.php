@@ -41,7 +41,7 @@ class MIME_Type_Extension
      *
      * @var array
      */
-    public $extensionToType = array (
+    public $extensionToType = array(
         'ez'        => 'application/andrew-inset',
         'atom'      => 'application/atom+xml',
         'jar'       => 'application/java-archive',
