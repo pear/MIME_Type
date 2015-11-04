@@ -32,7 +32,10 @@ Composer
 
 Usage
 =====
-See the examples in the ``docs/examples/`` directory.
+See the examples in the ``docs/examples/`` directory and
+the `official documentation`__.
+
+__ http://pear.php.net/package/MIME_Type/docs
 
 Detecting a file's MIME type
 ----------------------------
@@ -56,6 +59,8 @@ Homepage
   http://pear.php.net/package/MIME_Type
 Bug tracker
   http://pear.php.net/bugs/search.php?cmd=display&package_name[]=MIME_Type
+Documentation
+  http://pear.php.net/package/MIME_Type/docs
 Unit test status
   https://travis-ci.org/pear/MIME_Type
 
