@@ -2,7 +2,7 @@
     "name": "pear/mime_type",
     "homepage": "http://pear.php.net/package/MIME_Type",
     "description": "Detect the MIME Type of a file",
-    "license": "LGPL",
+    "license": "LGPL-2.1-or-later",
     "support": {
         "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=MIME_Type",
         "source": "https://github.com/pear/MIME_Type"
